@@ -1,0 +1,13 @@
+<appwidget-provider
+    android:description="@string/app_name"
+    android:previewImage="@drawable/ic_light_widget_preview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="in.sunilpaulmathew.weatherwidget.activities.LightWidgetActivity"
+    android:initialKeyguardLayout="@layout/widget_layout_light"
+    android:initialLayout="@layout/widget_layout_light"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen"
+    android:minHeight="72dp"
+    android:minWidth="72dp" >
+</appwidget-provider>

@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name" translatable="false">Weather</string>
+
+    <string name="about">About</string>
+    <string name="air_pressure">Air pressure: %s hPa</string>
+    <string name="cancel">Cancel</string>
+    <string name="centigrade">Centigrade (&#176;C)</string>
+    <string name="credits">Credits</string>
+    <string name="daily_forecast">Daily forecast</string>
+    <string name="days">%s days</string>
+    <string name="edit_location">Edit location</string>
+    <string name="edit_location_warning">Please disable location service for manual editing</string>
+    <string name="exit_confirmation_message">Press back again to exit</string>
+    <string name="fahrenheit">Fahrenheit (&#176;F)</string>
+    <string name="forecast_days">Forecast Days</string>
+    <string name="help_message">Need help? click here</string>
+    <string name="humidity">Humidity: %s%%</string>
+    <string name="latitude">Latitude</string>
+    <string name="location">Location</string>
+    <string name="location_data_failed">Failed to load location data</string>
+    <string name="location_access_request">Enable location access for accurate weather data</string>
+    <string name="location_service">Location Service</string>
+    <string name="location_service_summary">Use location service when available</string>
+    <string name="location_summary_search">Search for a location</string>
+    <string name="location_summary_manual">or manually provide the following parameters</string>
+    <string name="longitude">Longitude</string>
+    <string name="precipitation">Precipitation: %s%%</string>
+    <string name="preferences">Preferences</string>
+    <string name="request_access">Request access</string>
+    <string name="report_issue">Report an Issue</string>
+    <string name="report_issue_summary">Raise an issue at GitHub</string>
+    <string name="source_code">Source Code</string>
+    <string name="source_code_summary">Weather is an open-source application, which is ready to accept contributions from the development community. Click here to check out the source code</string>
+    <string name="temperature_feels_like">Feels like %s</string>
+    <string name="temperature_unit">Temperature Unit</string>
+    <string name="temperature_unit_centigrade" translatable="false">&#176;C</string>
+    <string name="temperature_unit_fahrenheit" translatable="false">&#176;F</string>
+    <string name="today">Today</string>
+    <string name="transparent_background">Transparent Background</string>
+    <string name="transparent_background_summary">Use transparent background for weather widgets</string>
+    <string name="uv_index">UV Index: %s</string>
+    <string name="visibility">Visibility: %s m</string>
+    <string name="weather_code_clear">Clear</string>
+    <string name="weather_code_clear_mostly">Mostly clear</string>
+    <string name="weather_code_cloudy_partly">Partly cloudy</string>
+    <string name="weather_code_overcast">Overcast</string>
+    <string name="weather_code_fog">Fog</string>
+    <string name="weather_code_rim_fog">Rime fog</string>
+    <string name="weather_code_drizzle_light">Light drizzle</string>
+    <string name="weather_code_drizzle_moderate">Moderate drizzle</string>
+    <string name="weather_code_drizzle_dense">Dense drizzle</string>
+    <string name="weather_code_drizzle_freezing_light">Light freezing drizzle</string>
+    <string name="weather_code_drizzle_freezing_dense">Dense freezing drizzle</string>
+    <string name="weather_code_rain_light">Light rain</string>
+    <string name="weather_code_rain_moderate">Moderate rain</string>
+    <string name="weather_code_rain_heavy">Heavy rain</string>
+    <string name="weather_code_rain_freezing_light">Light freezing rain</string>
+    <string name="weather_code_rain_freezing_heavy">Heavy freezing rain</string>
+    <string name="weather_code_snowfalls_light">Light snowfall</string>
+    <string name="weather_code_snowfalls_moderate">Moderate snowfall</string>
+    <string name="weather_code_snowfalls_heavy">Heavy snowfall</string>
+    <string name="weather_code_snow_grains">Snow grains</string>
+    <string name="weather_code_snow_showers_light">Light snow showers</string>
+    <string name="weather_code_snow_showers_heavy">Heavy snow showers</string>
+    <string name="weather_code_rain_showers_light">Light rain</string>
+    <string name="weather_code_rain_showers_moderate">Moderate rain</string>
+    <string name="weather_code_rain_showers_heavy">Heavy rain</string>
+    <string name="weather_code_thunderstorm">Thunderstorm</string>
+    <string name="weather_status_failed">Failed to load weather data</string>
+    <string name="wind_speed">Wind speed: %s Km/h</string>
+</resources>

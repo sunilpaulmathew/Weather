@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.application'
+}
+
+def keystoreFile = rootProject.file("app/sp.jks")
+
+android {
+    if (keystoreFile.exists()) {
+        signingConfigs {
+            release {
+                storeFile file("sp.jks")
+                storePassword "smartpack"
+                keyAlias "sp_key1"
+                keyPassword "smartpack"
+            }
+        }
+    }
+
+    namespace 'in.sunilpaulmathew.weatherwidget'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "in.sunilpaulmathew.weatherwidget"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "v0.1"
+        testFunctionalTest = false
+        testHandleProfiling = false
+    }
+
+    buildTypes {
+        release {
+            if (keystoreFile.exists()) {
+                signingConfig signingConfigs.release
+            }
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.google.android.material:material:1.8.0'
+}
