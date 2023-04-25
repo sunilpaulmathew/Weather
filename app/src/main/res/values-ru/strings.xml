@@ -17,7 +17,7 @@
     <string name="location">Местоположение</string>
     <string name="location_data_failed">Не удалось загрузить данные о местоположении</string>
     <string name="location_access_request">Обеспечьте доступ к местоположению для получения точных данных о погоде</string>
-    <string name="location_service">Служба местонахождения</string>
+    <string name="location_service">Служба местоположения</string>
     <string name="location_service_summary">Используйте сервис определения местоположения, когда он доступен</string>
     <string name="location_summary_search">Поиск местоположения</string>
     <string name="location_summary_manual">или вручную укажите следующие параметры</string>
