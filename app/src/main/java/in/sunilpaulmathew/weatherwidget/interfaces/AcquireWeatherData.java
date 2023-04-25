@@ -26,6 +26,7 @@ import in.sunilpaulmathew.weatherwidget.R;
 import in.sunilpaulmathew.weatherwidget.utils.ForecastItems;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
+import in.sunilpaulmathew.weatherwidget.utils.WeatherAlerts;
 import in.sunilpaulmathew.weatherwidget.utils.WeatherItems;
 
 /*
@@ -99,6 +100,20 @@ public abstract class AcquireWeatherData {
                                     mDayOrNight.getInt(i)
                             )
                     );
+                }
+
+                // Send weather alerts if enabled
+                if (Utils.getBoolean("weatherAlerts", false, mContext) && Utils.getLong("latNotification",
+                        Long.MIN_VALUE, mContext) + 3 * 60 * 60 * 1000 < System.currentTimeMillis()) {
+                    int alertCode = mHourlyWeatherCode.getInt(hour + 2);
+                    Integer[] weatherCodes = new Integer[] {
+                            45, 48, 55, 57, 65, 67, 75, 82, 86, 95, 96, 99
+                    };
+                    for (Integer weatherCode : weatherCodes) {
+                        if (alertCode == weatherCode) {
+                            new WeatherAlerts(alertCode, mDayOrNight.getInt(hour + 2), mContext).alert();
+                        }
+                    }
                 }
 
                 JSONObject mDaily = jsonObject.getJSONObject("daily");

@@ -4,21 +4,23 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import in.sunilpaulmathew.weatherwidget.interfaces.SingleChoiceDialog;
 import in.sunilpaulmathew.weatherwidget.BuildConfig;
 import in.sunilpaulmathew.weatherwidget.R;
 import in.sunilpaulmathew.weatherwidget.adapters.SettingsAdapter;
+import in.sunilpaulmathew.weatherwidget.interfaces.SingleChoiceDialog;
 import in.sunilpaulmathew.weatherwidget.utils.SettingsItems;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
@@ -61,15 +63,24 @@ public class SettingsActivity extends AppCompatActivity {
                     recreate();
                 }
             } else if (position == 2) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && Utils.isNotificationAccessDenied(this)) {
+                    notificationPermissionRequest.launch(
+                            Manifest.permission.POST_NOTIFICATIONS
+                    );
+                } else {
+                    Utils.saveBoolean("weatherAlerts", !Utils.getBoolean("weatherAlerts", false, this), this);
+                    recreate();
+                }
+            } else if (position == 3) {
                 new SingleChoiceDialog(R.drawable.ic_thermostat, getString(R.string.temperature_unit),
                         new String[] {
                                 getString(R.string.centigrade),
                                 getString(R.string.fahrenheit)
                         }, temperatureUnitPosition(), SettingsActivity.this) {
                     @Override
-                    public void onItemSelected(int position) {
-                        if (position == temperatureUnitPosition()) return;
-                        if (position == 1) {
+                    public void onItemSelected(int itemPosition) {
+                        if (itemPosition == temperatureUnitPosition()) return;
+                        if (itemPosition == 1) {
                             Utils.saveString("temperatureUnit", "&temperature_unit=fahrenheit", SettingsActivity.this);
                         } else {
                             Utils.saveString("temperatureUnit", "", SettingsActivity.this);
@@ -78,7 +89,7 @@ public class SettingsActivity extends AppCompatActivity {
                         Utils.restartApp(SettingsActivity.this);
                     }
                 }.show();
-            } else if (position == 3) {
+            } else if (position == 4) {
                 new SingleChoiceDialog(R.drawable.ic_days, getString(R.string.forecast_days),
                         new String[] {
                                 getString(R.string.days, "3"),
@@ -86,11 +97,11 @@ public class SettingsActivity extends AppCompatActivity {
                                 getString(R.string.days, "14")
                         }, forecastDaysPosition(), SettingsActivity.this) {
                     @Override
-                    public void onItemSelected(int position) {
-                        if (position == forecastDaysPosition()) return;
-                        if (position == 2) {
+                    public void onItemSelected(int itemPosition) {
+                        if (itemPosition == forecastDaysPosition()) return;
+                        if (itemPosition == 2) {
                             Utils.saveString("forecastDays", "&forecast_days=14", SettingsActivity.this);
-                        } else if (position == 1) {
+                        } else if (itemPosition == 1) {
                             Utils.saveString("forecastDays", "", SettingsActivity.this);
                         } else {
                             Utils.saveString("forecastDays", "&forecast_days=3", SettingsActivity.this);
@@ -99,7 +110,7 @@ public class SettingsActivity extends AppCompatActivity {
                         Utils.restartApp(SettingsActivity.this);
                     }
                 }.show();
-            } else if (position == 4) {
+            } else if (position == 5) {
                 Utils.saveBoolean("transparentBackground", !Utils.getBoolean("transparentBackground", false, this), this);
                 Utils.updateWidgets(this);
                 recreate();
@@ -114,6 +125,8 @@ public class SettingsActivity extends AppCompatActivity {
                 Utils.getDrawable(R.drawable.ic_info, this), null));
         mData.add(new SettingsItems(getString(R.string.location_service), getString(R.string.location_service_summary),
                 Utils.getDrawable(R.drawable.ic_gps, this), null));
+        mData.add(new SettingsItems(getString(R.string.weather_alert), getString(R.string.weather_alert_summary),
+                Utils.getDrawable(R.drawable.ic_notifications, this), null));
         mData.add(new SettingsItems(getString(R.string.temperature_unit), getTemperatureUnit(),
                 Utils.getDrawable(R.drawable.ic_thermostat, this), null));
         mData.add(new SettingsItems(getString(R.string.forecast_days), getForecastDays(),
@@ -165,7 +178,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    ActivityResultLauncher<String[]> locationPermissionRequest =
+    private final ActivityResultLauncher<String[]> locationPermissionRequest =
             registerForActivityResult(new ActivityResultContracts
                             .RequestMultiplePermissions(), result -> {
                         Boolean fineLocationGranted = result.getOrDefault(
@@ -174,6 +187,15 @@ public class SettingsActivity extends AppCompatActivity {
                                 Manifest.permission.ACCESS_COARSE_LOCATION,false);
                 Utils.saveBoolean("useGPS", fineLocationGranted != null && fineLocationGranted
                                 || coarseLocationGranted != null && coarseLocationGranted, this);
+                        recreate();
+                    }
+            );
+
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    private final ActivityResultLauncher<String> notificationPermissionRequest =
+            registerForActivityResult(new ActivityResultContracts
+                            .RequestPermission(), isGranted -> {
+                        Utils.saveBoolean("weatherAlerts", isGranted, this);
                         recreate();
                     }
             );

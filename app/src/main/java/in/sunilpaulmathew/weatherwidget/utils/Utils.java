@@ -14,9 +14,11 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -57,6 +59,11 @@ public class Utils {
                 ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    public static boolean isNotificationAccessDenied(Context context) {
+        return ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED;
+    }
+
     public static Drawable getDrawable(int drawable, Context context) {
         return ContextCompat.getDrawable(context, drawable);
     }
@@ -67,6 +74,10 @@ public class Utils {
 
     public static int getOrientation(Activity activity) {
         return activity.isInMultiWindowMode() ? Configuration.ORIENTATION_PORTRAIT : activity.getResources().getConfiguration().orientation;
+    }
+
+    public static long getLong(String name, long defaults, Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getLong(name, defaults);
     }
 
     public static String valueOfInt(String string) {
@@ -119,6 +130,10 @@ public class Utils {
 
     public static void saveBoolean(String name, boolean value, Context context) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(name, value).apply();
+    }
+
+    public static void saveLong(String name, long value, Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(name, value).apply();
     }
 
     public static void saveString(String name, String value, Context context) {

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name" translatable="false">Weather</string>
 
     <string name="about">About</string>
@@ -40,6 +40,10 @@
     <string name="transparent_background_summary">Use transparent background for weather widgets</string>
     <string name="uv_index">UV Index: %s</string>
     <string name="visibility">Visibility: %s m</string>
+    <string name="weather_alert">Weather Alerts</string>
+    <string name="weather_alert_message">%s is expected after an hour!</string>
+    <string name="weather_alert_summary">Show notifications on extreme weather conditions</string>
+    <string name="weather_alert_title">Weather alert for %s</string>
     <string name="weather_code_clear">Clear</string>
     <string name="weather_code_clear_mostly">Mostly clear</string>
     <string name="weather_code_cloudy_partly">Partly cloudy</string>
@@ -62,9 +66,9 @@
     <string name="weather_code_snow_grains">Snow grains</string>
     <string name="weather_code_snow_showers_light">Light snow showers</string>
     <string name="weather_code_snow_showers_heavy">Heavy snow showers</string>
-    <string name="weather_code_rain_showers_light">Light rain</string>
-    <string name="weather_code_rain_showers_moderate">Moderate rain</string>
-    <string name="weather_code_rain_showers_heavy">Heavy rain</string>
+    <string name="weather_code_rain_showers_light">Light rain showers</string>
+    <string name="weather_code_rain_showers_moderate">Moderate rain showers</string>
+    <string name="weather_code_rain_showers_heavy">Heavy rain showers</string>
     <string name="weather_code_thunderstorm">Thunderstorm</string>
     <string name="weather_status_failed">Failed to load weather data</string>
     <string name="wind_speed">Wind speed: %s Km/h</string>

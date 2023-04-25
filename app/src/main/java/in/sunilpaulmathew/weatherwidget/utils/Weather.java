@@ -25,21 +25,29 @@ public class Weather {
      * Credits for icons: https://github.com/basmilius/weather-icons
      */
     public static Drawable getWeatherIcon(int isDay, int weatherCode, Context context) {
+        return Utils.getDrawable(getWeatherIcon(isDay, weatherCode), context);
+    }
+
+    public static File getDataFile(Context context) {
+        return new File(context.getExternalFilesDir("location"), "locationData");
+    }
+
+    static int getWeatherIcon(int isDay, int weatherCode) {
         switch (weatherCode) {
             case 1:
             case 2:
-                return Utils.getDrawable(isDay == 1 ? R.drawable.ic_partly_cloudy_day : R.drawable.ic_partly_cloudy_night, context);
+                return isDay == 1 ? R.drawable.ic_partly_cloudy_day : R.drawable.ic_partly_cloudy_night;
             case 3:
-                return Utils.getDrawable(isDay == 1 ? R.drawable.ic_overcast_day : R.drawable.ic_overcast_night, context);
+                return isDay == 1 ? R.drawable.ic_overcast_day : R.drawable.ic_overcast_night;
             case 51:
             case 53:
             case 55:
             case 56:
             case 57:
-                return Utils.getDrawable(isDay == 1 ? R.drawable.ic_drizzle_day : R.drawable.ic_drizzle_night, context);
+                return isDay == 1 ? R.drawable.ic_drizzle_day : R.drawable.ic_drizzle_night;
             case 45:
             case 48:
-                return Utils.getDrawable(isDay == 1 ? R.drawable.ic_fog_day : R.drawable.ic_fog_night, context);
+                return isDay == 1 ? R.drawable.ic_fog_day : R.drawable.ic_fog_night;
             case 61:
             case 63:
             case 65:
@@ -48,25 +56,21 @@ public class Weather {
             case 80:
             case 81:
             case 82:
-                return Utils.getDrawable(isDay == 1 ? R.drawable.ic_rain_day : R.drawable.ic_rain_night, context);
+                return isDay == 1 ? R.drawable.ic_rain_day : R.drawable.ic_rain_night;
             case 71:
             case 73:
             case 75:
             case 77:
             case 85:
             case 86:
-                return Utils.getDrawable(R.drawable.ic_snow, context);
+                return R.drawable.ic_snow;
             case 95:
             case 96:
             case 99:
-                return Utils.getDrawable(isDay == 1 ? R.drawable.ic_thunderstorms_day : R.drawable.ic_thunderstorms_night, context);
+                return isDay == 1 ? R.drawable.ic_thunderstorms_day : R.drawable.ic_thunderstorms_night;
             default:
-                return Utils.getDrawable(isDay == 1 ? R.drawable.ic_clear_day : R.drawable.ic_clear_night, context);
+                return isDay == 1 ? R.drawable.ic_clear_day : R.drawable.ic_clear_night;
         }
-    }
-
-    public static File getDataFile(Context context) {
-        return new File(context.getExternalFilesDir("location"), "locationData");
     }
 
     public static String getFormattedDay(int day) {

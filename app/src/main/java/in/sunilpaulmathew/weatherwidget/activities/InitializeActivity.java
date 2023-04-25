@@ -143,7 +143,7 @@ public class InitializeActivity extends AppCompatActivity {
         Utils.restartApp(this);
     }
 
-    ActivityResultLauncher<String[]> locationPermissionRequest =
+    private final ActivityResultLauncher<String[]> locationPermissionRequest =
             registerForActivityResult(new ActivityResultContracts
                             .RequestMultiplePermissions(), result -> {
                         Boolean fineLocationGranted = result.getOrDefault(

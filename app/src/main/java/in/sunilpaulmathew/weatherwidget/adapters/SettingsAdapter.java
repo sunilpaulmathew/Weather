@@ -1,5 +1,6 @@
 package in.sunilpaulmathew.weatherwidget.adapters;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,10 +43,14 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         holder.mIcon.setImageDrawable(this.data.get(position).getIcon());
         holder.mTitle.setText(this.data.get(position).getTitle());
         holder.mDescription.setText(this.data.get(position).getDescription());
-        if (position == 1 || position == 4) {
+        if (position == 1 || position == 2 || position == 5) {
             holder.mChecked.setVisibility(View.VISIBLE);
-            if (position == 4) {
+            if (position == 5) {
                 holder.mChecked.setChecked(Utils.getBoolean("transparentBackground", false, holder.mChecked.getContext()));
+            } else if (position == 2) {
+                holder.mChecked.setChecked(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? !Utils.isNotificationAccessDenied(
+                        holder.mChecked.getContext()) && Utils.getBoolean("weatherAlerts", false, holder.mChecked.getContext())
+                        : Utils.getBoolean("weatherAlerts", false, holder.mChecked.getContext()));
             } else {
                 holder.mChecked.setChecked(!Utils.isLocationAccessDenied(holder.mChecked.getContext()) && Utils.getBoolean("useGPS",
                         true, holder.mChecked.getContext()));
