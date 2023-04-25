@@ -17,7 +17,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -87,8 +86,15 @@ public abstract class AcquireWeatherData {
                 JSONArray mDayOrNight = mHourly.getJSONArray("is_day");
 
                 List<ForecastItems> mHourlyForecastItems = new ArrayList<>();
-                Calendar calendar = Calendar.getInstance();
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int hour;
+                String timeHour = mCurrentWeather.getString("time").split("T")[1].split(":")[0];
+                if (timeHour.equals("00")) {
+                    hour = 0;
+                } else if (timeHour.startsWith("0")) {
+                    hour = Integer.parseInt(timeHour.replace("0",""));
+                } else {
+                    hour = Integer.parseInt(timeHour);
+                }
                 for (int i = hour; i < hour + 24; i++) {
                     mHourlyForecastItems.add(
                             new ForecastItems(
