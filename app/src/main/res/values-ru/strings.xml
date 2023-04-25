@@ -58,9 +58,9 @@
     <string name="weather_code_snow_grains">Зерна снега</string>
     <string name="weather_code_snow_showers_light">Легкий снежный дождь</string>
     <string name="weather_code_snow_showers_heavy">Сильный снежный дождь</string>
-    <string name="weather_code_rain_showers_light">Легкий дождь</string>
-    <string name="weather_code_rain_showers_moderate">Умеренный дождь</string>
-    <string name="weather_code_rain_showers_heavy">Сильный дождь</string>
+    <string name="weather_code_rain_showers_light">Небольшие ливневые дожди</string>
+    <string name="weather_code_rain_showers_moderate">Умеренные ливневые дожди</string>
+    <string name="weather_code_rain_showers_heavy">Сильные ливневые дожди</string>
     <string name="weather_code_thunderstorm">Гроза</string>
     <string name="weather_status_failed">Не удалось загрузить данные о погоде</string>
     <string name="wind_speed">Сила ветра: %s км/час</string>
