@@ -30,6 +30,7 @@ import java.io.IOException;
 import in.sunilpaulmathew.weatherwidget.activities.MainActivity;
 import in.sunilpaulmathew.weatherwidget.providers.WidgetProviderFull;
 import in.sunilpaulmathew.weatherwidget.providers.WidgetProviderLight;
+import in.sunilpaulmathew.weatherwidget.providers.WidgetProviderWeatherClock;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2023
@@ -145,10 +146,14 @@ public class Utils {
                 activity.getApplication(), WidgetProviderFull.class));
         int[] idsLight = AppWidgetManager.getInstance(activity.getApplication()).getAppWidgetIds(new ComponentName(
                 activity.getApplication(), WidgetProviderLight.class));
+        int[] idsWeatherClock = AppWidgetManager.getInstance(activity.getApplication()).getAppWidgetIds(new ComponentName(
+                activity.getApplication(), WidgetProviderWeatherClock.class));
         WidgetProviderFull mFullWidgetProvider = new WidgetProviderFull();
         mFullWidgetProvider.onUpdate(activity, AppWidgetManager.getInstance(activity), idsFull);
         WidgetProviderLight mLightWidgetProvider = new WidgetProviderLight();
         mLightWidgetProvider.onUpdate(activity, AppWidgetManager.getInstance(activity), idsLight);
+        WidgetProviderWeatherClock mWeatherClockWidgetProvider = new WidgetProviderWeatherClock();
+        mWeatherClockWidgetProvider.onUpdate(activity, AppWidgetManager.getInstance(activity), idsWeatherClock);
     }
 
 }

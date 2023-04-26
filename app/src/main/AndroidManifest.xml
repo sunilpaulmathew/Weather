@@ -50,6 +50,15 @@
 
         <activity android:name=".activities.SettingsActivity" android:exported="false" />
 
+        <activity
+            android:name=".activities.WeatherClockWidgetActivity"
+            android:excludeFromRecents="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
         <receiver android:name=".providers.WidgetProviderFull"
             android:exported="false" >
             <intent-filter>
@@ -70,6 +79,17 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_light" />
+        </receiver>
+
+        <receiver android:name=".providers.WidgetProviderWeatherClock"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_weather_clock" />
         </receiver>
     </application>
 </manifest>

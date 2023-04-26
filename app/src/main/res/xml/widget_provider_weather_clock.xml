@@ -1,0 +1,13 @@
+<appwidget-provider
+    android:description="@string/app_name"
+    android:previewImage="@drawable/ic_weatherclock_widget_preview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="in.sunilpaulmathew.weatherwidget.activities.WeatherClockWidgetActivity"
+    android:initialKeyguardLayout="@layout/widget_layout_weather_clock"
+    android:initialLayout="@layout/widget_layout_weather_clock"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen"
+    android:minHeight="60dp"
+    android:minWidth="60dp" >
+</appwidget-provider>
