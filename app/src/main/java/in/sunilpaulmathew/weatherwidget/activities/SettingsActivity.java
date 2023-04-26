@@ -60,6 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
                     });
                 } else {
                     Utils.saveBoolean("useGPS", !Utils.getBoolean("useGPS", true, this), this);
+                    Utils.saveBoolean("gpsAllowed", !Utils.getBoolean("gpsAllowed", false, this), this);
                     recreate();
                 }
             } else if (position == 2) {
