@@ -46,6 +46,17 @@ public abstract class AcquireWeatherData {
     public void acquire() {
         ExecutorService executors = Executors.newSingleThreadExecutor();
         executors.execute(() -> {
+            // Initialize LocationListener to find out current location
+            new LocationListener(mContext) {
+                @Override
+                public void onLocationInitialized(String latitude, String longitude, String address) {
+                    Utils.saveBoolean("reAcquire", true, mContext);
+                    Utils.saveString("latitude", latitude, mContext);
+                    Utils.saveString("longitude", longitude, mContext);
+                    Utils.saveString("location", address, mContext);
+                }
+            }.initialize();
+
             List<WeatherItems> mWeatherItems = new ArrayList<>();
             JSONObject jsonObject;
             try {

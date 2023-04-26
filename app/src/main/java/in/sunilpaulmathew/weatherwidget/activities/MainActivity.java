@@ -16,7 +16,6 @@ import java.util.List;
 import in.sunilpaulmathew.weatherwidget.R;
 import in.sunilpaulmathew.weatherwidget.adapters.WeatherAdapter;
 import in.sunilpaulmathew.weatherwidget.interfaces.AcquireWeatherData;
-import in.sunilpaulmathew.weatherwidget.interfaces.LocationListener;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
 import in.sunilpaulmathew.weatherwidget.utils.WeatherItems;
@@ -38,16 +37,6 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView mRecyclerView = findViewById(R.id.recycler_view);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        new LocationListener(this) {
-            @Override
-            public void onLocationInitialized(String latitude, String longitude, String address) {
-                Utils.saveBoolean("reAcquire", true, MainActivity.this);
-                Utils.saveString("latitude", latitude, MainActivity.this);
-                Utils.saveString("longitude", longitude, MainActivity.this);
-                Utils.saveString("location", address, MainActivity.this);
-            }
-        }.initialize();
 
         if (Weather.getLatitude(this) == null || Weather.getLongitude(this) == null) {
             Intent initialize = new Intent(this, InitializeActivity.class);

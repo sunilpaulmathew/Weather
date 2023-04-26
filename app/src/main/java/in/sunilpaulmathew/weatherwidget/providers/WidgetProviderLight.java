@@ -15,7 +15,6 @@ import java.util.List;
 import in.sunilpaulmathew.weatherwidget.R;
 import in.sunilpaulmathew.weatherwidget.activities.MainActivity;
 import in.sunilpaulmathew.weatherwidget.interfaces.AcquireWeatherData;
-import in.sunilpaulmathew.weatherwidget.interfaces.LocationListener;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
 import in.sunilpaulmathew.weatherwidget.utils.WeatherItems;
@@ -49,16 +48,6 @@ public class WidgetProviderLight extends AppWidgetProvider {
     public static void update(AppWidgetManager appWidgetManager, int appWidgetId, Context context) {
         RemoteViews mViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_light);
         Intent mIntent = new Intent(context, MainActivity.class);
-
-        new LocationListener(context) {
-            @Override
-            public void onLocationInitialized(String latitude, String longitude, String address) {
-                Utils.saveBoolean("reAcquire", true, context);
-                Utils.saveString("latitude", latitude, context);
-                Utils.saveString("longitude", longitude, context);
-                Utils.saveString("location", address, context);
-            }
-        }.initialize();
 
         new AcquireWeatherData(Weather.getLatitude(context), Weather.getLongitude(context), context) {
 
