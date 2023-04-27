@@ -26,7 +26,6 @@ public abstract class LocationListener {
 
     private final Context mContext;
     private static Location mLocation = null;
-    private static String address = null;
 
     public LocationListener(Context context) {
         this.mContext = context;
@@ -55,12 +54,8 @@ public abstract class LocationListener {
                 try {
                     Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
                     List<Address> addresses = geocoder.getFromLocation(mLocation.getLatitude(), mLocation.getLongitude(), 1);
-                    if (addresses.get(0).getAddressLine(0).contains(",")) {
-                        address = addresses.get(0).getAddressLine(0).split(",")[0];
-                    } else {
-                        address = addresses.get(0).getAddressLine(0);
-                    }
-                    new Handler(Looper.getMainLooper()).post(() -> onLocationInitialized(String.valueOf(mLocation.getLatitude()), String.valueOf(mLocation.getLongitude()), address));
+                    new Handler(Looper.getMainLooper()).post(() -> onLocationInitialized(String.valueOf(mLocation.getLatitude()), String.valueOf(
+                            mLocation.getLongitude()), addresses.get(0).getAddressLine(0)));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

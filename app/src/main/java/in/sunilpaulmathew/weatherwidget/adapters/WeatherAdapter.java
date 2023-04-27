@@ -56,7 +56,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
         if (this.mData.get(position).isSuccess()) {
             holder.mStatusIcon.setImageDrawable(this.mData.get(position).getWeatherIcon());
             if (this.mData.get(position).getCity() != null) {
-                holder.mLocation.setText(this.mData.get(position).getCity());
+                if (this.mData.get(position).getCity().contains(",")) {
+                    holder.mLocation.setText(this.mData.get(position).getCity().split(",")[0]);
+                } else {
+                    holder.mLocation.setText(this.mData.get(position).getCity());
+                }
                 holder.mLocation.setTextColor(this.mData.get(position).getAccentColor(holder.mLocation.getContext()));
                 holder.mTimeZone.setText(this.mData.get(position).getTimeZone());
             } else {
