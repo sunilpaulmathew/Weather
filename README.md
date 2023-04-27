@@ -12,7 +12,8 @@
 ## Features
 * Accurate and real-time weather updates.
 * Simple, clean, and premium-looking interface.
-* Comes with two separate desktop widgets.
+* Weather alerts for extreme conditions (disabled by default).
+* Comes with three separate desktop widgets.
 * Work with very minimal permission.
 * No api key requirements.
 * Configurable temperature units and forecast days.
@@ -27,6 +28,9 @@
 ## Credits
 * [Open-Meteo](https://open-meteo.com/): Weather and location data (Licence: GPL v3)
 * [Bas Milius](https://github.com/basmilius/weather-icons): Weather icons (Licence: MIT)
+
+## Translations
+Please help me to translate this application via [POEditor](https://poeditor.com/join/project/DV7W7CTUV0). You may also translate after downloading the original language string available [here](https://github.com/sunilpaulmathew/Weather/blob/master/app/src/main/res/values/strings.xml).
 
 ## License
 

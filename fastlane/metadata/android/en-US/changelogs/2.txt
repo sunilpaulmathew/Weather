@@ -1,0 +1,7 @@
+* Implemented weather alerts for extreme conditions (disabled by default).
+* Improved finding current time for different time zones.
+* Implemented weather clock widget.
+* Added Russian translations.
+* Improved main app layout.
+* Improved widget sizes.
+* Miscellaneous changes.
