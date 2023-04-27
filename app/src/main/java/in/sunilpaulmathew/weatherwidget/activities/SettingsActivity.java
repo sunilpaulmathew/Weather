@@ -138,6 +138,8 @@ public class SettingsActivity extends AppCompatActivity {
                 Utils.getDrawable(R.drawable.ic_github, this), "https://github.com/sunilpaulmathew/Weather"));
         mData.add(new SettingsItems(getString(R.string.report_issue), getString(R.string.report_issue_summary),
                 Utils.getDrawable(R.drawable.ic_issue, this), "https://github.com/sunilpaulmathew/Weather/issues/new/choose"));
+        mData.add(new SettingsItems(getString(R.string.translations), getString(R.string.translations_summary),
+                Utils.getDrawable(R.drawable.ic_translate, this), "https://poeditor.com/join/project/DV7W7CTUV0"));
         return mData;
     }
 

@@ -36,6 +36,8 @@
     <string name="temperature_unit_centigrade" translatable="false">&#176;C</string>
     <string name="temperature_unit_fahrenheit" translatable="false">&#176;F</string>
     <string name="today">Today</string>
+    <string name="translations">Translations</string>
+    <string name="translations_summary">Help me to translate this app. Click here to visit POEditor localization project</string>
     <string name="transparent_background">Transparent Background</string>
     <string name="transparent_background_summary">Use transparent background for weather widgets</string>
     <string name="uv_index">UV Index: %s</string>
