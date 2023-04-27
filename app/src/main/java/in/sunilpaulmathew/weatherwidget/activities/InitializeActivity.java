@@ -136,11 +136,15 @@ public class InitializeActivity extends AppCompatActivity {
     }
 
     private void apply(String city, String latitude, String longitude) {
-        Utils.saveBoolean("reAcquire", true, this);
-        Utils.saveString("latitude", latitude, this);
-        Utils.saveString("longitude", longitude, this);
-        Utils.saveString("location", city, this);
-        Utils.restartApp(this);
+        ExecutorService executors = Executors.newSingleThreadExecutor();
+        executors.execute(() -> {
+            Utils.saveBoolean("reAcquire", true, this);
+            Utils.saveString("latitude", latitude, this);
+            Utils.saveString("longitude", longitude, this);
+            Utils.saveString("location", city, this);
+            new Handler(Looper.getMainLooper()).post(() -> Utils.restartApp(this));
+            if (!executors.isShutdown()) executors.shutdown();
+        });
     }
 
     private final ActivityResultLauncher<String[]> locationPermissionRequest =
