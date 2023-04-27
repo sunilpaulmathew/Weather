@@ -1,0 +1,21 @@
+<i>Weather</i> is an open-source, privacy-oriented application for accurate real-time weather updates.
+
+Stay ahead of the storm with our intuitive weather app. Get accurate and real-time updates on current conditions, hourly forecasts, and severe weather conditions for your location. Plan your day with confidence and never let the weather catch you off guard again.
+
+<b>Features</b>
+
+- Accurate and real-time weather updates.
+- Simple, clean, and premium-looking interface.
+- Weather alerts for extreme conditions (disabled by default).
+- Comes with three separate desktop widgets.
+- Work with very minimal permission.
+- No api key requirements.
+- Configurable temperature units and forecast days.
+- Open-source and privacy-friendly.
+- Ad-free and no user data collection.
+- Auto-dark/light theme.
+- And much more…
+
+<b>Translations</b>
+
+Please help me to translate this application via <a href='https://poeditor.com/join/project/DV7W7CTUV0'>POEditor</a>. You may also translate after downloading the original language string available <a href='https://github.com/sunilpaulmathew/Weather/blob/master/app/src/main/res/values/strings.xml'>GitHub</a>.
