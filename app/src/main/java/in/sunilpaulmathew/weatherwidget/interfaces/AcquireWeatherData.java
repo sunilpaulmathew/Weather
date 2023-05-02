@@ -179,6 +179,7 @@ public abstract class AcquireWeatherData {
                         )
                 );
             } catch (JSONException | IOException ignored) {
+                new Handler(Looper.getMainLooper()).post(() -> Utils.toast(mContext.getString(R.string.weather_status_failed), mContext).show());
                 mWeatherItems.add(
                         new WeatherItems(
                                 null,
