@@ -41,6 +41,9 @@
     <string name="transparent_background">Transparent Background</string>
     <string name="transparent_background_summary">Use transparent background for weather widgets</string>
     <string name="uv_index">UV Index: %s</string>
+    <string name="uv_index_alert_high">Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen and hat are a must!</string>
+    <string name="uv_index_alert_medium">Seek shade during midday hours! Slip on a shirt, slop on sunscreen and slap on hat!</string>
+    <string name="uv_index_alert_title">UV index alert for %s</string>
     <string name="visibility">Visibility: %s m</string>
     <string name="weather_alert">Weather Alerts</string>
     <string name="weather_alert_message">%s is expected after an hour!</string>

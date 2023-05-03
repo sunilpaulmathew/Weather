@@ -20,10 +20,12 @@ import in.sunilpaulmathew.weatherwidget.activities.MainActivity;
  */
 public class WeatherAlerts {
 
+    private final boolean mUVAlert;
     private final Context mContext;
     private final int mDay, mWeatherCode;
 
-    public WeatherAlerts(int weatherCode, int day, Context context) {
+    public WeatherAlerts(boolean uvAlert, int weatherCode, int day, Context context) {
+        this.mUVAlert = uvAlert;
         this.mWeatherCode = weatherCode;
         this.mDay = day;
         this.mContext = context;
@@ -43,13 +45,16 @@ public class WeatherAlerts {
         }
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext, "channel");
-        Notification mNotification = mBuilder.setContentTitle(mContext.getString(R.string.weather_alert_title, Weather.getLocation(mContext)))
-                .setContentText(mContext.getString(R.string.weather_alert_message, Weather.getWeatherMode(mWeatherCode, mContext)))
+        Notification mNotification = mBuilder.setContentTitle(mUVAlert ? mContext.getString(R.string.uv_index_alert_title,
+                        Weather.getLocation(mContext)) : mContext.getString(R.string.weather_alert_title, Weather.getLocation(mContext)))
+                .setContentText(mUVAlert ? mContext.getString(mWeatherCode >= 8 ? R.string.uv_index_alert_high :
+                        R.string.uv_index_alert_medium) : mContext.getString(R.string.weather_alert_message,
+                        Weather.getWeatherMode(mWeatherCode, mContext)))
                 .setAutoCancel(true)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setOnlyAlertOnce(true)
                 .setSound(mAlarmSound)
-                .setSmallIcon(Weather.getWeatherIcon(mDay, mWeatherCode))
+                .setSmallIcon(mUVAlert ? R.drawable.ic_uv_index : Weather.getWeatherIcon(mDay, mWeatherCode))
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setContentIntent(mPendingIntent)
                 .build();
@@ -60,7 +65,7 @@ public class WeatherAlerts {
         }
         try {
             notificationManager.notify(0, mNotification);
-            Utils.saveLong("latNotification", System.currentTimeMillis(), mContext);
+            Utils.saveLong(mUVAlert ? "lastUVAlert" : "lastWeatherAlert", System.currentTimeMillis(), mContext);
         } catch (NullPointerException ignored) {
         }
     }

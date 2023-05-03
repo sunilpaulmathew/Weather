@@ -32,6 +32,18 @@ public class Weather {
         return new File(context.getExternalFilesDir("location"), "locationData");
     }
 
+    public static int getFormattedHour(String time) {
+        String[] timeSplit = time.split("T");
+        String hour = timeSplit[1].split(":")[0];
+        if (hour.equals("00")) {
+            return 0;
+        } else if (hour.startsWith("0")) {
+            return Integer.parseInt(hour.replace("0",""));
+        } else {
+            return Integer.parseInt(hour);
+        }
+    }
+
     static int getWeatherIcon(int isDay, int weatherCode) {
         switch (weatherCode) {
             case 1:

@@ -119,20 +119,6 @@ public abstract class AcquireWeatherData {
                     );
                 }
 
-                // Send weather alerts if enabled
-                if (Utils.getBoolean("weatherAlerts", false, mContext) && Utils.getLong("latNotification",
-                        Long.MIN_VALUE, mContext) + 3 * 60 * 60 * 1000 < System.currentTimeMillis()) {
-                    int alertCode = mHourlyWeatherCode.getInt(hour + 2);
-                    Integer[] weatherCodes = new Integer[] {
-                            45, 48, 55, 57, 65, 67, 75, 82, 86, 95, 96, 99
-                    };
-                    for (Integer weatherCode : weatherCodes) {
-                        if (alertCode == weatherCode) {
-                            new WeatherAlerts(alertCode, mDayOrNight.getInt(hour + 2), mContext).alert();
-                        }
-                    }
-                }
-
                 JSONObject mDaily = jsonObject.getJSONObject("daily");
                 JSONArray mDailyTime = mDaily.getJSONArray("time");
                 JSONArray mDailyWeatherCode = mDaily.getJSONArray("weathercode");
@@ -141,6 +127,27 @@ public abstract class AcquireWeatherData {
                 JSONArray mUVIndex = mDaily.getJSONArray("uv_index_max");
                 JSONArray mSunrise = mDaily.getJSONArray("sunrise");
                 JSONArray mSunset = mDaily.getJSONArray("sunset");
+
+                // Send weather alerts if enabled
+                if (Utils.getBoolean("weatherAlerts", false, mContext)) {
+                    if (mUVIndex.getInt(0) >= 3 && Weather.getFormattedHour(mSunrise.getString(0)) >= hour + 1 && Weather.getFormattedHour(
+                            mSunrise.getString(0)) <= hour + 2 && Utils.getLong("lastUVAlert", Long.MIN_VALUE, mContext) +
+                            3 * 60 * 60 * 1000 < System.currentTimeMillis()) {
+                        new WeatherAlerts(true, mUVIndex.getInt(0), Integer.MIN_VALUE, mContext).alert();
+                    }
+
+                    if (Utils.getLong("lastWeatherAlert", Long.MIN_VALUE, mContext) + 3 * 60 * 60 * 1000 < System.currentTimeMillis()) {
+                        int alertCode = mHourlyWeatherCode.getInt(hour + 2);
+                        Integer[] weatherCodes = new Integer[]{
+                                45, 48, 55, 57, 65, 67, 75, 82, 86, 95, 96, 99
+                        };
+                        for (Integer weatherCode : weatherCodes) {
+                            if (alertCode == weatherCode) {
+                                new WeatherAlerts(false, alertCode, mDayOrNight.getInt(hour + 2), mContext).alert();
+                            }
+                        }
+                    }
+                }
 
                 List<ForecastItems> mDailyForecastItems = new ArrayList<>();
                 for (int i = 0; i < mDailyTime.length(); i++) {
