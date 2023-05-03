@@ -60,7 +60,8 @@ public abstract class AcquireWeatherData {
             List<WeatherItems> mWeatherItems = new ArrayList<>();
             JSONObject jsonObject;
             try {
-                if (Utils.getBoolean("reAcquire", false, mContext) || Weather.getDataFile(mContext).lastModified() + 1800000 < System.currentTimeMillis()) {
+                if (Utils.getBoolean("reAcquire", false, mContext) || Weather.getDataFile(mContext).lastModified() + 1800000 < System.currentTimeMillis()
+                        && !Utils.isNetworkUnavailable(mContext)) {
                     InputStream is = new URL("https://api.open-meteo.com/v1/forecast?latitude=" + mLatitude + "&longitude=" + mLongitude +
                             "&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min," +
                             "uv_index_max,sunrise,sunset&hourly=temperature_2m,weathercode,precipitation_probability,visibility,relativehumidity_2m," +

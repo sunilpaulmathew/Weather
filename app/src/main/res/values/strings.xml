@@ -24,6 +24,7 @@
     <string name="location_summary_search">Search for a location</string>
     <string name="location_summary_manual">or manually provide the following parameters</string>
     <string name="longitude">Longitude</string>
+    <string name="network_connection_failed">Network connection failed. Aborting…</string>
     <string name="precipitation">Precipitation: %s%%</string>
     <string name="preferences">Preferences</string>
     <string name="request_access">Request access</string>

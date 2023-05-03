@@ -81,6 +81,10 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(int itemPosition) {
                         if (itemPosition == temperatureUnitPosition()) return;
+                        if (Utils.isNetworkUnavailable(SettingsActivity.this)) {
+                            Utils.toast(getString(R.string.network_connection_failed), SettingsActivity.this).show();
+                            return;
+                        }
                         if (itemPosition == 1) {
                             Utils.saveString("temperatureUnit", "&temperature_unit=fahrenheit", SettingsActivity.this);
                         } else {
@@ -100,6 +104,10 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(int itemPosition) {
                         if (itemPosition == forecastDaysPosition()) return;
+                        if (Utils.isNetworkUnavailable(SettingsActivity.this)) {
+                            Utils.toast(getString(R.string.network_connection_failed), SettingsActivity.this).show();
+                            return;
+                        }
                         if (itemPosition == 2) {
                             Utils.saveString("forecastDays", "&forecast_days=14", SettingsActivity.this);
                         } else if (itemPosition == 1) {
