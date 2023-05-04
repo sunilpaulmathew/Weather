@@ -142,6 +142,8 @@ public class InitializeActivity extends AppCompatActivity {
             Utils.saveString("latitude", latitude, this);
             Utils.saveString("longitude", longitude, this);
             Utils.saveString("location", city, this);
+            Utils.saveLong("lastUVAlert", Long.MIN_VALUE, this);
+            Utils.saveLong("lastWeatherAlert", Long.MIN_VALUE, this);
             new Handler(Looper.getMainLooper()).post(() -> Utils.restartApp(this));
             if (!executors.isShutdown()) executors.shutdown();
         });
