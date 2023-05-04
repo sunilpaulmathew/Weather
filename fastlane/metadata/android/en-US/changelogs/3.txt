@@ -1,0 +1,5 @@
+* Implemented high UV index alert.
+* App now handle no internet available situations.
+* Import German and Hungarian translations.
+* Updated Russian translations.
+* Miscellaneous changes.
