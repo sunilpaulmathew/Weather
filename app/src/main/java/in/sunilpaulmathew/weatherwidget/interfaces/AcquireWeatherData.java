@@ -131,9 +131,9 @@ public abstract class AcquireWeatherData {
 
                 // Send weather alerts if enabled
                 if (Utils.getBoolean("weatherAlerts", false, mContext)) {
-                    if (mUVIndex.getInt(0) >= 3 && Weather.getFormattedHour(mSunrise.getString(0)) >= hour + 1 && Weather.getFormattedHour(
-                            mSunrise.getString(0)) <= hour + 2 && Utils.getLong("lastUVAlert", Long.MIN_VALUE, mContext) +
-                            3 * 60 * 60 * 1000 < System.currentTimeMillis()) {
+                    if (mUVIndex.getInt(0) >= 3 && Weather.getFormattedHour(mSunrise.getString(0)) + 1 <= hour && Weather.getFormattedHour(
+                            mSunrise.getString(0)) + 3 >= hour && Utils.getLong("lastUVAlert", Long.MIN_VALUE, mContext) +
+                            5 * 60 * 60 * 1000 < System.currentTimeMillis()) {
                         new WeatherAlerts(true, mUVIndex.getInt(0), Integer.MIN_VALUE, mContext).alert();
                     }
 
