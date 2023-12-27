@@ -17,12 +17,12 @@ android {
     }
 
     namespace 'in.sunilpaulmathew.weatherwidget'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "in.sunilpaulmathew.weatherwidget"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 3
         versionName "v0.3"
         testFunctionalTest = false
@@ -39,8 +39,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.11.0'
 }
