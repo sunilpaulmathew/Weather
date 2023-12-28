@@ -1,0 +1,5 @@
+* App now targets latest android version.
+* Built with latest gradle tools and dependencies.
+* Internal improvements.
+* Updated translations.
+* Miscellaneous changes.
