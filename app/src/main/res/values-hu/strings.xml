@@ -72,4 +72,8 @@
     <string name="wind_speed">"Szélsebesség: %s Km/h"</string>
     <string name="translations">"Fordítások"</string>
     <string name="translations_summary">"Segítsen lefordítani ezt az alkalmazást. Kattintson ide a POEditor lokalizációs projekt megnyitásához"</string>
+    <string name="network_connection_failed">"A hálózati csatlakozás sikertelen.  Megszakítás…"</string>
+    <string name="uv_index_alert_high">"Kerülje a kint tartózkodást a déli órákban!  Keressen árnyékot!  Az ing, a naptej és a kalap szükséges!"</string>
+    <string name="uv_index_alert_medium">"Keressen árnyékot a déli órákban!  Vegyen fel inget, használjon naptejet és tegyen fel kalapot!"</string>
+    <string name="uv_index_alert_title">"Riasztás %s UV index felett"</string>
 </resources>
