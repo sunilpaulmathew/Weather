@@ -1,0 +1,3 @@
+* Implemented new details view for hourly and daily forecast.
+* Updated build tools.
+* Miscellaneous changes.
