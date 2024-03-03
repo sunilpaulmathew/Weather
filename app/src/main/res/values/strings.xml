@@ -44,6 +44,7 @@
     <string name="uv_index">UV Index: %s</string>
     <string name="uv_index_alert_high">Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen and hat are a must!</string>
     <string name="uv_index_alert_medium">Seek shade during midday hours! Slip on a shirt, slop on sunscreen and slap on hat!</string>
+    <string name="uv_index_alert_safe">You can safely enjoy being outside!</string>
     <string name="uv_index_alert_title">UV index alert for %s</string>
     <string name="visibility">Visibility: %s m</string>
     <string name="weather_alert">Weather Alerts</string>
@@ -76,6 +77,7 @@
     <string name="weather_code_rain_showers_moderate">Moderate rain showers</string>
     <string name="weather_code_rain_showers_heavy">Heavy rain showers</string>
     <string name="weather_code_thunderstorm">Thunderstorm</string>
+    <string name="weather_expected_title">Weather conditions expected on %s:</string>
     <string name="weather_status_failed">Failed to load weather data</string>
     <string name="wind_speed">Wind speed: %s Km/h</string>
 </resources>

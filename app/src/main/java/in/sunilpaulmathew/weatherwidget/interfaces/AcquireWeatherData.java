@@ -113,9 +113,17 @@ public abstract class AcquireWeatherData {
                                     mHourlyTime.getString(i),
                                     Utils.valueOfInt(mHourlyTemp.getString(i)),
                                     null,
+                                    "(" + mContext.getString(R.string.temperature_feels_like, Utils.valueOfInt(mTempApparent.getString(i))) +
+                                            Weather.getTemperatureUnit(mContext) + ")",
                                     mHourlyWeatherCode.getInt(i),
                                     null,
-                                    mDayOrNight.getInt(i)
+                                    mDayOrNight.getInt(i),
+                                    null,
+                                    null,
+                                    mContext.getString(R.string.humidity, mHumidity.getInt(i)),
+                                    mHourlyPre.getString(i),
+                                    mContext.getString(R.string.air_pressure, mAirPressure.getString(i)),
+                                    mContext.getString(R.string.visibility, mVisibility.getString(i))
                             )
                     );
                 }
@@ -157,9 +165,16 @@ public abstract class AcquireWeatherData {
                                     mDailyTime.getString(i),
                                     Utils.valueOfInt(mDailyTempMax.getString(i)),
                                     Utils.valueOfInt(mDailyTempMin.getString(i)),
+                                    null,
                                     mDailyWeatherCode.getInt(i),
                                     mUVIndex.getString(i),
-                                    1
+                                    mDayOrNight.getInt(i),
+                                    mSunrise.getString(i),
+                                    mSunset.getString(i),
+                                    null,
+                                    null,
+                                    null,
+                                    null
                             )
                     );
                 }

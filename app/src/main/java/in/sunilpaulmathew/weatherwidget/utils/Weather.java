@@ -132,24 +132,26 @@ public class Weather {
         }
     }
 
-    public static String getFormattedTime(String time) {
+    public static String getFormattedTime(boolean precise, String time) {
         String[] timeSplit = time.split("T");
-        int newTime;
-        if (timeSplit[1].replace(":00","").equals("00")) {
-            newTime = 0;
-        } else if (timeSplit[1].replace(":00","").startsWith("0")) {
-            newTime = Integer.parseInt(timeSplit[1].replace(":00","").replace("0",""));
+        String hour = timeSplit[1].split(":")[0];
+        String min = timeSplit[1].split(":")[1];
+        int newHour;
+        if (hour.equals("00")) {
+            newHour = 0;
+        } else if (hour.startsWith("0")) {
+            newHour = Integer.parseInt(hour.replace("0",""));
         } else {
-            newTime = Integer.parseInt(timeSplit[1].replace(":00",""));
+            newHour = Integer.parseInt(hour);
         }
-        if (newTime == 0) {
-            return 12 + " AM";
-        } else if (newTime == 12) {
-            return newTime + " PM";
-        } else if (newTime > 12) {
-            return newTime - 12 + " PM";
+        if (newHour == 0) {
+            return 12 + (precise ? ":" + min : "") + " AM";
+        } else if (newHour == 12) {
+            return newHour + (precise ? ":" + min : "") + " PM";
+        } else if (newHour > 12) {
+            return newHour - 12 + (precise ? ":" + min : "") + " PM";
         } else {
-            return newTime + " AM";
+            return newHour + (precise ? ":" + min : "") + " AM";
         }
     }
 

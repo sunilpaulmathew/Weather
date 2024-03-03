@@ -27,7 +27,8 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:scaleType="fitCenter"
-                    android:background="@null" />
+                    android:background="@null"
+                    android:clickable="false" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"

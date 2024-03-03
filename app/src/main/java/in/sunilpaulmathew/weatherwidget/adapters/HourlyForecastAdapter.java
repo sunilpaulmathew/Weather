@@ -23,6 +23,8 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
 
     private final List<ForecastItems> mData;
 
+    private static ClickListener mClickListener;
+
     public HourlyForecastAdapter(List<ForecastItems> data) {
         this.mData = data;
     }
@@ -36,10 +38,10 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
 
     @Override
     public void onBindViewHolder(@NonNull HourlyForecastAdapter.ViewHolder holder, int position) {
-        holder.mStatusIocn.setImageDrawable(this.mData.get(position).getWeatherIcon(this.mData.get(position).getDayOrNight(), holder.mStatusIocn.getContext()));
+        holder.mStatusIcon.setImageDrawable(this.mData.get(position).getWeatherIcon(this.mData.get(position).getDayOrNight(), holder.mStatusIcon.getContext()));
         holder.mDate.setText(this.mData.get(position).getTime());
         holder.mTemperature.setText(this.mData.get(position).getHourlyTemp());
-        holder.mTemperature.setTextColor(this.mData.get(position).getAccentColor(holder.mTemperature.getContext()));
+        holder.mTemperature.setTextColor(this.mData.get(position).getAccentColor(false, holder.mTemperature.getContext()));
         holder.mTemperatureUnit.setText(Weather.getTemperatureUnit(holder.mTemperatureUnit.getContext()));
     }
 
@@ -48,17 +50,31 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
         return this.mData.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final AppCompatImageButton mStatusIocn;
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private final AppCompatImageButton mStatusIcon;
         private final MaterialTextView mDate, mTemperature, mTemperatureUnit;
 
         public ViewHolder(View view) {
             super(view);
-            this.mStatusIocn = view.findViewById(R.id.weather_button);
+            view.setOnClickListener(this);
+            this.mStatusIcon = view.findViewById(R.id.weather_button);
             this.mDate = view.findViewById(R.id.date);
             this.mTemperature = view.findViewById(R.id.temperature_status);
             this.mTemperatureUnit = view.findViewById(R.id.temperature_unit);
         }
+
+        @Override
+        public void onClick(View view) {
+            mClickListener.onItemClick(getAdapterPosition(), view);
+        }
+    }
+
+    public void setOnItemClickListener(ClickListener clickListener) {
+        HourlyForecastAdapter.mClickListener = clickListener;
+    }
+
+    public interface ClickListener {
+        void onItemClick(int position, View v);
     }
 
 }

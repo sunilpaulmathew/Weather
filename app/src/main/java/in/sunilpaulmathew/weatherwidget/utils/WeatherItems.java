@@ -85,11 +85,11 @@ public class WeatherItems implements Serializable {
     }
 
     public String getSunriseTime() {
-        return getFormattedTime(mSunrise);
+        return Weather.getFormattedTime(true, mSunrise);
     }
 
     public String getSunsetTime() {
-        return getFormattedTime(mSunset);
+        return Weather.getFormattedTime(true, mSunset);
     }
 
     public String getWeatherStatus() {
@@ -110,29 +110,6 @@ public class WeatherItems implements Serializable {
 
     public String getHumidity() {
         return mHumidity;
-    }
-
-    private static String getFormattedTime(String time) {
-        String[] timeSplit = time.split("T");
-        String hour = timeSplit[1].split(":")[0];
-        String min = timeSplit[1].split(":")[1];
-        int newHour;
-        if (hour.equals("00")) {
-            newHour = 0;
-        } else if (hour.startsWith("0")) {
-            newHour = Integer.parseInt(hour.replace("0",""));
-        } else {
-            newHour = Integer.parseInt(hour);
-        }
-        if (newHour == 0) {
-            return 12 + ":" + min + " AM";
-        } else if (newHour == 12) {
-            return newHour + ":" + min + " PM";
-        } else if (newHour > 12) {
-            return newHour - 12 + ":" + min + " PM";
-        } else {
-            return newHour + ":" + min + " AM";
-        }
     }
 
 }
