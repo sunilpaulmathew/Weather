@@ -3,6 +3,9 @@
 
     <string name="about">About</string>
     <string name="air_pressure">Air pressure: %s hPa</string>
+    <string name="amoled_black">Amoled Black</string>
+    <string name="amoled_black_message">This feature requires Android S (API 31) and system-wide dark mode enabled</string>
+    <string name="amoled_black_summary">Apply amoled black color in dark theme</string>
     <string name="cancel">Cancel</string>
     <string name="centigrade">Centigrade (&#176;C)</string>
     <string name="credits">Credits</string>

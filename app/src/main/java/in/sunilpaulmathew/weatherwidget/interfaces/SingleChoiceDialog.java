@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import in.sunilpaulmathew.weatherwidget.R;
+import in.sunilpaulmathew.weatherwidget.utils.Utils;
+
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2023
  */
@@ -22,6 +25,9 @@ public abstract class SingleChoiceDialog {
         this.mSingleChoiceItems = singleChoiceItems;
         this.mPosition = position;
         this.mDialogBuilder = new MaterialAlertDialogBuilder(context);
+        if (Utils.getBoolean("amoledTheme", false, context)) {
+            this.mDialogBuilder.setBackground(Utils.getDrawable(R.color.color_black, context));
+        }
     }
 
     private void startDialog() {

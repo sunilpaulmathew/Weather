@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -56,11 +57,16 @@ public class InitializeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mRootView = inflater.inflate(R.layout.fragment_intialize, container, false);
 
+        RelativeLayout mMainLayout = mRootView.findViewById(R.id.main);
         mLatitude = mRootView.findViewById(R.id.latitude);
         mLocation = mRootView.findViewById(R.id.location);
         mLongitude = mRootView.findViewById(R.id.longitude);
         MaterialCardView mApplyCard = mRootView.findViewById(R.id.apply_card);
         RecyclerView mRecyclerView = mRootView.findViewById(R.id.recycler_view);
+
+        if (Utils.getBoolean("amoledTheme", false, requireActivity())) {
+            mMainLayout.setBackgroundColor(Utils.getColor(R.color.color_black, requireActivity()));
+        }
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 

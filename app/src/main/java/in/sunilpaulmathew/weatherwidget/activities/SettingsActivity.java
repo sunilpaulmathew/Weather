@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +36,12 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        LinearLayoutCompat mMainLayout = findViewById(R.id.layout_main);
         RecyclerView mRecyclerView = findViewById(R.id.recycler_view);
+
+        if (Utils.getBoolean("amoledTheme", false, this)) {
+            mMainLayout.setBackgroundColor(Utils.getColor(R.color.color_black, this));
+        }
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, Utils.getOrientation(
                 this)  == Configuration.ORIENTATION_LANDSCAPE ? 2 : 1));
@@ -53,6 +59,13 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(settings);
                 finish();
             } else if (position == 1) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S || !Utils.isDarkTheme(this)) {
+                    Utils.toast(getString(R.string.amoled_black_message), this).show();
+                    return;
+                }
+                Utils.saveBoolean("amoledTheme", !Utils.getBoolean("amoledTheme", false, this), this);
+                Utils.restartApp(this);
+            } else if (position == 2) {
                 if (Utils.isLocationAccessDenied(this)) {
                     locationPermissionRequest.launch(new String[] {
                             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -63,7 +76,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Utils.saveBoolean("gpsAllowed", !Utils.getBoolean("gpsAllowed", false, this), this);
                     recreate();
                 }
-            } else if (position == 2) {
+            } else if (position == 3) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && Utils.isNotificationAccessDenied(this)) {
                     notificationPermissionRequest.launch(
                             Manifest.permission.POST_NOTIFICATIONS
@@ -72,7 +85,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Utils.saveBoolean("weatherAlerts", !Utils.getBoolean("weatherAlerts", false, this), this);
                     recreate();
                 }
-            } else if (position == 3) {
+            } else if (position == 4) {
                 new SingleChoiceDialog(R.drawable.ic_thermostat, getString(R.string.temperature_unit),
                         new String[] {
                                 getString(R.string.centigrade),
@@ -94,7 +107,7 @@ public class SettingsActivity extends AppCompatActivity {
                         Utils.restartApp(SettingsActivity.this);
                     }
                 }.show();
-            } else if (position == 4) {
+            } else if (position == 5) {
                 new SingleChoiceDialog(R.drawable.ic_days, getString(R.string.forecast_days),
                         new String[] {
                                 getString(R.string.days, "3"),
@@ -119,7 +132,7 @@ public class SettingsActivity extends AppCompatActivity {
                         Utils.restartApp(SettingsActivity.this);
                     }
                 }.show();
-            } else if (position == 5) {
+            } else if (position == 6) {
                 Utils.saveBoolean("transparentBackground", !Utils.getBoolean("transparentBackground", false, this), this);
                 Utils.updateWidgets(this);
                 recreate();
@@ -132,6 +145,8 @@ public class SettingsActivity extends AppCompatActivity {
         mData.add(new SettingsItems(getString(R.string.app_name) + " " + BuildConfig.VERSION_NAME + " ("
                 + BuildConfig.VERSION_CODE + ")", "Copyright: ©2023-2024, sunilpaulmathew",
                 Utils.getDrawable(R.drawable.ic_info, this), null));
+        mData.add(new SettingsItems(getString(R.string.amoled_black), getString(R.string.amoled_black_summary),
+                Utils.getDrawable(R.drawable.ic_theme, this), null));
         mData.add(new SettingsItems(getString(R.string.location_service), getString(R.string.location_service_summary),
                 Utils.getDrawable(R.drawable.ic_gps, this), null));
         mData.add(new SettingsItems(getString(R.string.weather_alert), getString(R.string.weather_alert_summary),

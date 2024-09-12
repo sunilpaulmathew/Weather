@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -243,7 +242,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
             });
         } else {
             holder.mLocation.setText(holder.mLocation.getContext().getString(R.string.weather_status_failed));
-            holder.mLocation.setTextColor(ContextCompat.getColor(holder.mLocation.getContext(), R.color.color_red));
+            holder.mLocation.setTextColor(Utils.getColor(R.color.color_black, holder.mLocation.getContext()));
             holder.mForecastTitleCard.setVisibility(View.GONE);
             holder.mSunrise.setVisibility(View.GONE);
             holder.mSunset.setVisibility(View.GONE);
