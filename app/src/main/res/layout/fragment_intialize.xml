@@ -144,7 +144,6 @@
                         android:id="@+id/apply_card"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="@color/color_accent"
                         app:strokeColor="@color/color_accent"
                         android:layout_gravity="center|end"
                         android:layout_margin="15dp"
@@ -154,7 +153,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_select"
-                            android:tint="@color/color_black"
                             android:layout_margin="5dp"
                             android:background="@null"
                             android:clickable="false" />

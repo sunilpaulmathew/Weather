@@ -10,11 +10,10 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_black"
         android:textColor="@color/color_accent"
         android:text="@string/preferences"
         android:layout_gravity="start"
-        android:gravity="start|center"
+        android:gravity="center"
         android:textStyle="bold"
         android:textSize="25sp"
         android:padding="10dp"/>
