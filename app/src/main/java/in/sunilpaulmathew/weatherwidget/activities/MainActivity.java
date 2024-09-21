@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(Utils.getBoolean("amoledTheme", false, this)? R.style.AppTheme_Amoled : R.style.AppTheme);
+        setTheme(Utils.isAmoledBlackEnabled(this)? R.style.AppTheme_Amoled : R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

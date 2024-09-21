@@ -64,7 +64,7 @@ public class InitializeFragment extends Fragment {
         MaterialCardView mApplyCard = mRootView.findViewById(R.id.apply_card);
         RecyclerView mRecyclerView = mRootView.findViewById(R.id.recycler_view);
 
-        if (Utils.getBoolean("amoledTheme", false, requireActivity())) {
+        if (Utils.isAmoledBlackEnabled(requireActivity())) {
             mMainLayout.setBackgroundColor(Utils.getColor(R.color.color_black, requireActivity()));
         }
 

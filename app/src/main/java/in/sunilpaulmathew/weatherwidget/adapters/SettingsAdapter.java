@@ -42,7 +42,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull SettingsAdapter.ViewHolder holder, int position) {
-        if (Utils.getBoolean("amoledTheme", false, holder.mCard.getContext())) {
+        if (Utils.isAmoledBlackEnabled(holder.mCard.getContext())) {
             holder.mCard.setCardBackgroundColor(Utils.getColor(R.color.color_black, holder.mCard.getContext()));
         }
         holder.mIcon.setImageDrawable(this.data.get(position).getIcon());
@@ -64,7 +64,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
                 holder.mChecked.setChecked(!Utils.isLocationAccessDenied(holder.mChecked.getContext()) && Utils.getBoolean("useGPS",
                         true, holder.mChecked.getContext()));
             } else {
-                holder.mChecked.setChecked(Utils.getBoolean("amoledTheme", false, holder.mChecked.getContext()));
+                holder.mChecked.setChecked(Utils.isAmoledBlackEnabled(holder.mChecked.getContext()));
             }
         } else {
             holder.mChecked.setVisibility(View.GONE);

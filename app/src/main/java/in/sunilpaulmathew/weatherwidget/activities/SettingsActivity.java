@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
         LinearLayoutCompat mMainLayout = findViewById(R.id.layout_main);
         RecyclerView mRecyclerView = findViewById(R.id.recycler_view);
 
-        if (Utils.getBoolean("amoledTheme", false, this)) {
+        if (Utils.isAmoledBlackEnabled(this)) {
             mMainLayout.setBackgroundColor(Utils.getColor(R.color.color_black, this));
         }
 

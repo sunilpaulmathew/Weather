@@ -25,7 +25,7 @@ public abstract class SingleChoiceDialog {
         this.mSingleChoiceItems = singleChoiceItems;
         this.mPosition = position;
         this.mDialogBuilder = new MaterialAlertDialogBuilder(context);
-        if (Utils.getBoolean("amoledTheme", false, context)) {
+        if (Utils.isAmoledBlackEnabled(context)) {
             this.mDialogBuilder.setBackground(Utils.getDrawable(R.color.color_black, context));
         }
     }
