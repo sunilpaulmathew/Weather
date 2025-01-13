@@ -3,10 +3,11 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_gravity="center" >
+    android:layout_gravity="center"
+    android:weightSum="1" >
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
             android:orientation="vertical"
@@ -29,11 +30,12 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:layout_weight="0.34" >
+            android:layout_weight="0.34"
+            android:gravity="center" >
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/weather_status"
@@ -55,7 +57,7 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
@@ -65,7 +67,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_gravity="center" >
+                    android:layout_gravity="center"
+                    android:gravity="center">
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/temperature_status"
@@ -91,7 +94,7 @@
                     android:id="@+id/uv_index"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:textStyle="bold" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>
