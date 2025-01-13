@@ -15,13 +15,13 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +35,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -50,7 +51,7 @@ import in.sunilpaulmathew.weatherwidget.utils.Weather;
  */
 public class InitializeFragment extends Fragment {
 
-    private AppCompatAutoCompleteTextView mLatitude, mLocation, mLongitude;
+    private TextInputEditText mLatitude, mLocation, mLongitude;
 
     @Nullable
     @Override
@@ -137,10 +138,10 @@ public class InitializeFragment extends Fragment {
         });
 
         mApplyCard.setOnClickListener(v -> {
-            if (mLatitude.getText().toString().trim().isEmpty() || mLongitude.getText().toString().trim().isEmpty()) {
+            if (Objects.requireNonNull(mLatitude.getText()).toString().trim().isEmpty() || Objects.requireNonNull(mLongitude.getText()).toString().trim().isEmpty()) {
                 return;
             }
-            apply(mLocation.getText().toString().trim(), mLatitude.getText().toString().trim(), mLongitude.getText().toString().trim());
+            apply(Objects.requireNonNull(mLocation.getText()).toString().trim(), mLatitude.getText().toString().trim(), mLongitude.getText().toString().trim());
         });
 
         requireActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {

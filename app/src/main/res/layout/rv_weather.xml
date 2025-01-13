@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:tint="@color/color_accent"
+            android:tint="?attr/colorPrimary"
             android:src="@drawable/ic_dots"
             android:layout_margin="5dp"
             android:background="@null"

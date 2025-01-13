@@ -35,33 +35,34 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/location_summary_search"
-                        android:textColor="@color/color_accent"
+                        android:textColor="?attr/colorPrimary"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:clickable="false"
                         android:textStyle="bold"
                         android:textSize="20sp" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:hint="@string/location"
-                        android:layout_margin="10dp"
-                        android:padding="5dp" >
+                        android:layout_width="match_parent"
+                        app:strokeColor="?attr/colorPrimary"
+                        android:layout_margin="5dp"
+                        app:cardCornerRadius="15dp" >
 
-                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/location"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start|center"
                             android:inputType="textMultiLine"
                             android:gravity="center_vertical"
+                            android:hint="@string/location"
                             android:imeOptions="actionSend"
                             android:cursorVisible="true"
+                            android:background="@null"
                             android:padding="10dp"
                             android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_view"
@@ -90,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/location_summary_manual"
-                        android:textColor="@color/color_accent"
+                        android:textColor="?attr/colorPrimary"
                         android:layout_gravity="center"
                         android:layout_margin="15dp"
                         android:clickable="false"
@@ -98,53 +99,55 @@
                         android:textSize="20sp"
                         android:gravity="center" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:hint="@string/latitude"
+                        android:layout_width="match_parent"
+                        app:strokeColor="?attr/colorPrimary"
                         android:layout_margin="10dp"
-                        android:padding="5dp" >
+                        app:cardCornerRadius="15dp" >
 
-                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/latitude"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start|center"
                             android:inputType="textMultiLine"
                             android:gravity="center_vertical"
+                            android:hint="@string/latitude"
                             android:imeOptions="actionSend"
                             android:cursorVisible="true"
+                            android:background="@null"
                             android:padding="10dp"
                             android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:hint="@string/longitude"
+                        android:layout_width="match_parent"
+                        app:strokeColor="?attr/colorPrimary"
                         android:layout_margin="10dp"
-                        android:padding="5dp" >
+                        app:cardCornerRadius="15dp" >
 
-                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/longitude"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start|center"
                             android:inputType="textMultiLine"
                             android:gravity="center_vertical"
+                            android:hint="@string/longitude"
                             android:imeOptions="actionSend"
                             android:cursorVisible="true"
+                            android:background="@null"
                             android:padding="10dp"
                             android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/apply_card"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:strokeColor="@color/color_accent"
+                        app:strokeColor="?attr/colorPrimary"
                         android:layout_gravity="center|end"
                         android:layout_margin="15dp"
                         app:cardCornerRadius="15dp" >
