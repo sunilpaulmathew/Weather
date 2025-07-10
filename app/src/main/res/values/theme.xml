@@ -5,13 +5,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.Amoled" parent="Theme.Material3.DynamicColors.DayNight">
+    <style name="AppTheme.Amoled" parent="AppTheme">
         <item name="android:colorBackground">@color/color_black</item>
         <item name="android:windowBackground">@color/color_black</item>
         <item name="colorPrimaryDark">@color/color_black</item>
         <item name="colorSurface">@color/color_black</item>
-        <item name="android:statusBarColor">@color/color_black</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 </resources>
