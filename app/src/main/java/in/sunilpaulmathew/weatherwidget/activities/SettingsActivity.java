@@ -143,7 +143,7 @@ public class SettingsActivity extends AppCompatActivity {
     private ArrayList<SettingsItems> getData() {
         ArrayList<SettingsItems> mData = new ArrayList<>();
         mData.add(new SettingsItems(getString(R.string.app_name) + " " + BuildConfig.VERSION_NAME + " ("
-                + BuildConfig.VERSION_CODE + ")", "Copyright: ©2023-2024, sunilpaulmathew",
+                + BuildConfig.VERSION_CODE + ")", getString(R.string.copyright_text),
                 Utils.getDrawable(R.drawable.ic_info, this), null));
         mData.add(new SettingsItems(getString(R.string.amoled_black), getString(R.string.amoled_black_summary),
                 Utils.getDrawable(R.drawable.ic_theme, this), null));

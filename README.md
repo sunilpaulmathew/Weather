@@ -34,7 +34,7 @@ Please help me to translate this application via [POEditor](https://poeditor.com
 
 ## License
 
-    Copyright (C) 2023-2024 sunilpaulmathew <sunil.kde@gmail.com>
+    Copyright (C) 2023-2025 sunilpaulmathew <sunil.kde@gmail.com>
 
     Weather is a free softwares: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

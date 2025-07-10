@@ -8,6 +8,7 @@
     <string name="amoled_black_summary">Apply amoled black color in dark theme</string>
     <string name="cancel">Cancel</string>
     <string name="centigrade">Centigrade (&#176;C)</string>
+    <string name="copyright_text">Copyright: ©2023–2025, sunilpaulmathew</string>
     <string name="credits">Credits</string>
     <string name="daily_forecast">Daily forecast</string>
     <string name="days">%s days</string>

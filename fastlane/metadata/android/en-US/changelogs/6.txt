@@ -1,0 +1,6 @@
+* Improved app theme (now follow more material guidelines).
+* Added Amoled black theme
+* Now targets latest sdk
+* Updated build tools and dependencies.
+* Added Portuguese translation
+* Miscellaneous changes.
