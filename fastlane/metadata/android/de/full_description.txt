@@ -1,0 +1,26 @@
+Mit unserer intuitiven Wetter-App bleiben Sie dem Sturm immer einen Schritt voraus. Erhalten Sie genaue und Echtzeit-Updates zu aktuellen Bedingungen, stündlichen Vorhersagen und Unwetterbedingungen für Ihren Standort. Planen Sie Ihren Tag mit Zuversicht und lassen Sie sich nie wieder vom Wetter überraschen.
+
+<b>Features</b>
+
+* Einfache, saubere und hochwertig aussehende Benutzeroberfläche.
+* Genaue und Echtzeit-Wetteraktualisierungen.
+* Wetterwarnungen für extreme Bedingungen (standardmäßig deaktiviert).
+* Kommt mit drei separaten Desktop-Widgets.
+* Arbeite mit sehr minimaler Erlaubnis.
+* Keine API-Schlüsselanforderungen.
+* Konfigurierbare Temperatureinheiten und Vorhersagetage.
+* Open Source und datenschutzfreundlich.
+* Werbefrei und keine Erhebung von Nutzerdaten.
+* Automatisches dunkles/helles Thema.
+* Vieles mehr.
+
+<b>Einschränkung</b>
+
+* Unterstützt jeweils nur einen Standort (entweder manuell konfiguriert oder automatisch vom GPS-Signal erfasst)
+
+<b>Credits</b>
+
+* Open-Meteo (https://open-meteo.com/): Wetter- und Standortdaten (Lizenz: GPL v3)
+* Bas Milius (https://github.com/basmilius/weather-icons): Wettersymbole (Lizenz: MIT)
+
+<b>Hinweis</b>: Wenn Sie auf Probleme stoßen, können Sie gerne ein Problem bei Github eröffnen.
