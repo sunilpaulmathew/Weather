@@ -17,7 +17,7 @@
     <string name="edit_location_warning">请禁用手动编辑位置服务</string>
     <string name="exit_confirmation_message">再试一次退出</string>
     <string name="fahrenheit">华氏度 (&#176;F)</string>
-    <string name="forecast_days">体测天数</string>
+    <string name="forecast_days">预测天数</string>
     <string name="help_message">需要帮助？这里</string>
     <string name="humidity">湿度: %s%%</string>
     <string name="latitude">维度</string>
@@ -36,7 +36,7 @@
     <string name="report_issue">指出漏洞</string>
     <string name="report_issue_summary">报告错误</string>
     <string name="source_code">源代码</string>
-    <string name="source_code_summary">Weather 是一个开源应用程序，随时准备接受开发社区的贡献。 点击这里查看源代码</string>
+    <string name="source_code_summary">Weather 是一个开源应用程序 随时准备接受开发社区的贡献 点击这里查看源代码</string>
     <string name="temperature_feels_like">体感 %s</string>
     <string name="temperature_unit">温度单位</string>
     <string name="temperature_unit_centigrade" translatable="false">&#176;C</string>
@@ -64,7 +64,7 @@
     <string name="weather_code_rim_fog">雾凇雾</string>
     <string name="weather_code_drizzle_light">零星小雨</string>
     <string name="weather_code_drizzle_moderate">中常小雨</string>
-    <string name="weather_code_drizzle_dense">高密度细雨</string>
+    <string name="weather_code_drizzle_dense">毛毛雨</string>
     <string name="weather_code_drizzle_freezing_light">轻度冻毛毛雨</string>
     <string name="weather_code_drizzle_freezing_dense">浓密冻毛毛雨</string>
     <string name="weather_code_rain_light">小雨</string>
