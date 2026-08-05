@@ -11,7 +11,6 @@ import android.provider.Settings;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,12 +28,12 @@ import in.sunilpaulmathew.weatherwidget.utils.Weather;
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2023
  */
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_settings, R.id.layout_main);
 
         LinearLayoutCompat mMainLayout = findViewById(R.id.layout_main);
         RecyclerView mRecyclerView = findViewById(R.id.recycler_view);

@@ -4,7 +4,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +19,7 @@ import in.sunilpaulmathew.weatherwidget.utils.WeatherItems;
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2023
  */
-public class FullWidgetActivity extends AppCompatActivity {
+public class FullWidgetActivity extends BaseActivity {
 
     private static int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
@@ -28,7 +27,7 @@ public class FullWidgetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_recyclerview);
+        setContentView(R.layout.layout_recyclerview, R.id.recycler_view);
 
         RecyclerView mRecyclerView = findViewById(R.id.recycler_view);
 
