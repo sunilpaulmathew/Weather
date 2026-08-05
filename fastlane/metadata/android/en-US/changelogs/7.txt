@@ -1,0 +1,3 @@
+• Performance and security updates for the latest Android version
+• Added support for Czech, Spanish, Polish, and Portuguese (Brazil)
+• General improvements and bug fixes

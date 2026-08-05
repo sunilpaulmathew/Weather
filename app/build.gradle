@@ -17,14 +17,14 @@ android {
     }
 
     namespace 'in.sunilpaulmathew.weatherwidget'
-    compileSdk 36
+    compileSdk 37
 
     defaultConfig {
         applicationId "in.sunilpaulmathew.weatherwidget"
         minSdk 24
-        targetSdk 35
-        versionCode 6
-        versionName "v0.6"
+        targetSdk 37
+        versionCode 7
+        versionName "v0.7"
         testFunctionalTest = false
         testHandleProfiling = false
     }
