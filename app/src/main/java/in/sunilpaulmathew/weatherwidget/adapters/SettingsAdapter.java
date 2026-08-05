@@ -14,7 +14,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import in.sunilpaulmathew.weatherwidget.R;
 import in.sunilpaulmathew.weatherwidget.utils.SettingsItems;
@@ -25,12 +25,13 @@ import in.sunilpaulmathew.weatherwidget.utils.Utils;
  */
 public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHolder> {
 
-    private final ArrayList<SettingsItems> data;
+    private final List<SettingsItems> data;
 
-    private static ClickListener mClickListener;
+    private final OnItemClickListener clickListener;
 
-    public SettingsAdapter(ArrayList<SettingsItems> data) {
+    public SettingsAdapter(List<SettingsItems> data, OnItemClickListener clickListener) {
         this.data = data;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -76,7 +77,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         return this.data.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final AppCompatImageButton mIcon;
         private final SwitchMaterial mChecked;
         private final MaterialCardView mCard;
@@ -94,16 +95,12 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
-            mClickListener.onItemClick(getAdapterPosition(), view);
+            clickListener.onItemClick(getBindingAdapterPosition());
         }
     }
 
-    public void setOnItemClickListener(ClickListener clickListener) {
-        SettingsAdapter.mClickListener = clickListener;
-    }
-
-    public interface ClickListener {
-        void onItemClick(int position, View v);
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 
 }

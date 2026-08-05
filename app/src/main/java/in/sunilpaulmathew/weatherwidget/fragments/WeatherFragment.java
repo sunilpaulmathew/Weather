@@ -2,6 +2,7 @@ package in.sunilpaulmathew.weatherwidget.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public class WeatherFragment extends Fragment {
                 } else {
                     Utils.toast(getString(R.string.exit_confirmation_message), requireActivity()).show();
                     mExit = true;
-                    new Handler().postDelayed(() -> mExit = false, 2000);
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> mExit = false, 2000);
                 }
             }
         });

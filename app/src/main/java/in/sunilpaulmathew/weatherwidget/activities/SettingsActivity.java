@@ -44,10 +44,8 @@ public class SettingsActivity extends BaseActivity {
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, Utils.getOrientation(
                 this)  == Configuration.ORIENTATION_LANDSCAPE ? 2 : 1));
-        SettingsAdapter mAdapter = new SettingsAdapter(getData());
-        mRecyclerView.setAdapter(mAdapter);
 
-        mAdapter.setOnItemClickListener((position, v) -> {
+        mRecyclerView.setAdapter(new SettingsAdapter(getData(), (position) -> {
             if (getData().get(position).getUrl() != null) {
                 Utils.launchUrl(getData().get(position).getUrl(), this);
             } else if (position == 0) {
@@ -136,7 +134,7 @@ public class SettingsActivity extends BaseActivity {
                 Utils.updateWidgets(this);
                 recreate();
             }
-        });
+        }));
     }
 
     private ArrayList<SettingsItems> getData() {

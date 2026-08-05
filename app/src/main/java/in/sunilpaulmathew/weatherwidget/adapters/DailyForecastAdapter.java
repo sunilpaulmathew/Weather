@@ -25,10 +25,11 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
 
     private final List<ForecastItems> mData;
 
-    private static ClickListener mClickListener;
+    private final OnItemClickListener mClickListener;
 
-    public DailyForecastAdapter(List<ForecastItems> data) {
+    public DailyForecastAdapter(List<ForecastItems> data, OnItemClickListener clickListener) {
         this.mData = data;
+        this.mClickListener = clickListener;
     }
 
     @NonNull
@@ -56,7 +57,7 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
         return this.mData.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final AppCompatImageButton mStatusIcon;
         private final MaterialTextView mDate, mDay, mUVIndex, mTemperature, mTemperatureUnit, mWeatherStatus;
 
@@ -74,15 +75,11 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
 
         @Override
         public void onClick(View view) {
-            mClickListener.onItemClick(getAdapterPosition(), view);
+            mClickListener.onItemClick(getBindingAdapterPosition(), view);
         }
     }
 
-    public void setOnItemClickListener(ClickListener clickListener) {
-        DailyForecastAdapter.mClickListener = clickListener;
-    }
-
-    public interface ClickListener {
+    public interface OnItemClickListener {
         void onItemClick(int position, View v);
     }
 

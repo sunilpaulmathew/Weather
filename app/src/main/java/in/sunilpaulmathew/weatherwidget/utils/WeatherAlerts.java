@@ -51,7 +51,7 @@ public class WeatherAlerts {
                         R.string.uv_index_alert_medium) : mContext.getString(R.string.weather_alert_message,
                         Weather.getWeatherMode(mWeatherCode, mContext)))
                 .setAutoCancel(true)
-                .setPriority(Notification.PRIORITY_HIGH)
+                .setPriority(NotificationManager.IMPORTANCE_HIGH)
                 .setOnlyAlertOnce(true)
                 .setSound(mAlarmSound)
                 .setSmallIcon(mUVAlert ? R.drawable.ic_uv_index : Weather.getWeatherIcon(mDay, mWeatherCode))

@@ -92,45 +92,45 @@ public class InitializeFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s != null && !s.toString().trim().isEmpty()) {
-                    ExecutorService executors = Executors.newSingleThreadExecutor();
-                    executors.execute(() -> {
-                        try (InputStream is = new URL("https://geocoding-api.open-meteo.com/v1/search?name=" + s.toString().trim() + "&count=10&language=en&format=json").openStream()) {
-                            BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-                            StringBuilder sb = new StringBuilder();
-                            int cp;
-                            while ((cp = rd.read()) != -1) {
-                                sb.append((char) cp);
-                            }
-                            if (!sb.toString().startsWith("{\"generationtime_ms\":")) {
-                                JSONObject mMainObject = new JSONObject(sb.toString());
-                                new Handler(Looper.getMainLooper()).post(() -> {
-                                    try {
-                                        JSONArray mResults = mMainObject.getJSONArray("results");
-                                        List<LocationItems> mData = new ArrayList<>();
-                                        for (int i=0; i<mResults.length(); i++) {
-                                            mData.add(new LocationItems(
-                                                    mResults.getJSONObject(i).getString("name"),
-                                                    mResults.getJSONObject(i).getString("country"),
-                                                    mResults.getJSONObject(i).getString("latitude"),
-                                                    mResults.getJSONObject(i).getString("longitude"))
-                                            );
+                    try (ExecutorService executors = Executors.newSingleThreadExecutor()) {
+                        executors.execute(() -> {
+                            try (InputStream is = new URL("https://geocoding-api.open-meteo.com/v1/search?name=" + s.toString().trim() + "&count=10&language=en&format=json").openStream()) {
+                                BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+                                StringBuilder sb = new StringBuilder();
+                                int cp;
+                                while ((cp = rd.read()) != -1) {
+                                    sb.append((char) cp);
+                                }
+                                if (!sb.toString().startsWith("{\"generationtime_ms\":")) {
+                                    JSONObject mMainObject = new JSONObject(sb.toString());
+                                    new Handler(Looper.getMainLooper()).post(() -> {
+                                        try {
+                                            JSONArray mResults = mMainObject.getJSONArray("results");
+                                            List<LocationItems> mData = new ArrayList<>();
+                                            for (int i = 0; i < mResults.length(); i++) {
+                                                mData.add(new LocationItems(
+                                                        mResults.getJSONObject(i).getString("name"),
+                                                        mResults.getJSONObject(i).getString("country"),
+                                                        mResults.getJSONObject(i).getString("latitude"),
+                                                        mResults.getJSONObject(i).getString("longitude"))
+                                                );
+                                            }
+
+                                            mRecyclerView.setAdapter(new LocationsAdapter(mData, (locationItem) -> apply(locationItem.getCity(),
+                                                    locationItem.getLatitude(), locationItem.getLongitude())));
+
+                                            mRecyclerView.setVisibility(View.VISIBLE);
+
+                                        } catch (JSONException ignored) {
                                         }
-                                        LocationsAdapter mLocationsAdapter = new LocationsAdapter(mData);
-                                        mRecyclerView.setVisibility(View.VISIBLE);
-                                        mRecyclerView.setAdapter(mLocationsAdapter);
-
-                                        mLocationsAdapter.setOnItemClickListener((position, v) -> apply(mData.get(position).getCity(),
-                                                mData.get(position).getLatitude(), mData.get(position).getLongitude()));
-
-                                    } catch (JSONException ignored) {
-                                    }
-                                });
+                                    });
+                                }
+                            } catch (JSONException | IOException ignored) {
+                                new Handler(Looper.getMainLooper()).post(() -> Utils.toast(getString(R.string.location_data_failed), requireActivity()).show());
                             }
-                        } catch (JSONException | IOException ignored) {
-                            new Handler(Looper.getMainLooper()).post(() -> Utils.toast(getString(R.string.location_data_failed), requireActivity()).show());
-                        }
-                        if (!executors.isShutdown()) executors.shutdown();
-                    });
+                            if (!executors.isShutdown()) executors.shutdown();
+                        });
+                    }
                 } else {
                     mRecyclerView.setVisibility(View.GONE);
                 }
@@ -159,17 +159,18 @@ public class InitializeFragment extends Fragment {
     }
 
     private void apply(String city, String latitude, String longitude) {
-        ExecutorService executors = Executors.newSingleThreadExecutor();
-        executors.execute(() -> {
-            Utils.saveBoolean("reAcquire", true, requireActivity());
-            Utils.saveString("latitude", latitude, requireActivity());
-            Utils.saveString("longitude", longitude, requireActivity());
-            Utils.saveString("location", city, requireActivity());
-            Utils.saveLong("lastUVAlert", Long.MIN_VALUE, requireActivity());
-            Utils.saveLong("lastWeatherAlert", Long.MIN_VALUE, requireActivity());
-            new Handler(Looper.getMainLooper()).post(() -> Utils.restartApp(requireActivity()));
-            if (!executors.isShutdown()) executors.shutdown();
-        });
+        try (ExecutorService executors = Executors.newSingleThreadExecutor()) {
+            executors.execute(() -> {
+                Utils.saveBoolean("reAcquire", true, requireActivity());
+                Utils.saveString("latitude", latitude, requireActivity());
+                Utils.saveString("longitude", longitude, requireActivity());
+                Utils.saveString("location", city, requireActivity());
+                Utils.saveLong("lastUVAlert", Long.MIN_VALUE, requireActivity());
+                Utils.saveLong("lastWeatherAlert", Long.MIN_VALUE, requireActivity());
+                new Handler(Looper.getMainLooper()).post(() -> Utils.restartApp(requireActivity()));
+                if (!executors.isShutdown()) executors.shutdown();
+            });
+        }
     }
 
     private final ActivityResultLauncher<String[]> locationPermissionRequest =

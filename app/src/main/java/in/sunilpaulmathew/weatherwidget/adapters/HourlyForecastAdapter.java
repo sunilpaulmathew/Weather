@@ -23,10 +23,11 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
 
     private final List<ForecastItems> mData;
 
-    private static ClickListener mClickListener;
+    private final OnItemClickListener mClickListener;
 
-    public HourlyForecastAdapter(List<ForecastItems> data) {
+    public HourlyForecastAdapter(List<ForecastItems> data, OnItemClickListener clickListener) {
         this.mData = data;
+        this.mClickListener = clickListener;
     }
 
     @NonNull
@@ -50,7 +51,7 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
         return this.mData.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final AppCompatImageButton mStatusIcon;
         private final MaterialTextView mDate, mTemperature, mTemperatureUnit;
 
@@ -65,15 +66,11 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
 
         @Override
         public void onClick(View view) {
-            mClickListener.onItemClick(getAdapterPosition(), view);
+            mClickListener.onItemClick(getBindingAdapterPosition(), view);
         }
     }
 
-    public void setOnItemClickListener(ClickListener clickListener) {
-        HourlyForecastAdapter.mClickListener = clickListener;
-    }
-
-    public interface ClickListener {
+    public interface OnItemClickListener {
         void onItemClick(int position, View v);
     }
 

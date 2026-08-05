@@ -90,13 +90,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
             holder.mRecyclerViewDaily.setLayoutManager(new LinearLayoutManager(holder.mRecyclerViewHourly.getContext()));
             holder.mRecyclerViewDaily.addItemDecoration(new DividerItemDecoration(holder.mRecyclerViewDaily.getContext(), DividerItemDecoration.VERTICAL));
 
-            DailyForecastAdapter mAdapterDaily = new DailyForecastAdapter(this.mData.get(position).getDailyForecastItems());
-            HourlyForecastAdapter mAdapterHourly = new HourlyForecastAdapter(this.mData.get(position).getHourlyForecastItems());
-            holder.mRecyclerViewDaily.setAdapter(mAdapterDaily);
-            holder.mRecyclerViewHourly.setLayoutManager(new LinearLayoutManager(holder.mRecyclerViewHourly.getContext(), LinearLayoutManager.HORIZONTAL, false));
-            holder.mRecyclerViewHourly.setAdapter(mAdapterHourly);
-
-            mAdapterDaily.setOnItemClickListener((dailyPosition, view) -> {
+            holder.mRecyclerViewDaily.setAdapter(new DailyForecastAdapter(this.mData.get(position).getDailyForecastItems(), (dailyPosition, view) -> {
                 LayoutInflater mLayoutInflator = LayoutInflater.from(view.getContext());
                 View detailsLayout = mLayoutInflator.inflate(R.layout.layout_weather_details, null);
                 AppCompatImageButton mStatusIcon = detailsLayout.findViewById(R.id.weather_button);
@@ -146,9 +140,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
                         .setView(detailsLayout)
                         .setPositiveButton(R.string.cancel, (dialogInterface, i) -> {
                         }).show();
-            });
+            }));
 
-            mAdapterHourly.setOnItemClickListener((hourlyPosition, view) -> {
+            holder.mRecyclerViewHourly.setLayoutManager(new LinearLayoutManager(holder.mRecyclerViewHourly.getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+            holder.mRecyclerViewHourly.setAdapter(new HourlyForecastAdapter(this.mData.get(position).getHourlyForecastItems(), (hourlyPosition, view) -> {
                 LayoutInflater mLayoutInflator = LayoutInflater.from(view.getContext());
                 View detailsLayout = mLayoutInflator.inflate(R.layout.layout_weather_details, null);
                 AppCompatImageButton mSunriseIcon = detailsLayout.findViewById(R.id.sunrise_button);
@@ -199,7 +195,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
                         .setView(detailsLayout)
                         .setPositiveButton(R.string.cancel, (dialogInterface, i) -> {
                         }).show();
-            });
+            }));
 
             holder.mMenu.setOnClickListener(v -> {
                 PopupMenu popupMenu = new PopupMenu(v.getContext(), holder.mMenu);

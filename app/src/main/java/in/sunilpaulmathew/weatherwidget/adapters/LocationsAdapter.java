@@ -19,11 +19,12 @@ import in.sunilpaulmathew.weatherwidget.utils.LocationItems;
  */
 public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.ViewHolder> {
 
-    private static ClickListener mClickListener;
     private final List<LocationItems> mData;
+    private final OnItemClickListener mClickListener;
 
-    public LocationsAdapter(List<LocationItems> data) {
+    public LocationsAdapter(List<LocationItems> data, OnItemClickListener clickListener) {
         this.mData = data;
+        this.mClickListener = clickListener;
     }
 
     @NonNull
@@ -43,7 +44,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
         return this.mData.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final MaterialTextView mLocationItems;
 
         public ViewHolder(View view) {
@@ -54,18 +55,13 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
 
         @Override
         public void onClick(View view) {
-            mClickListener.onItemClick(getAdapterPosition(), view);
+            mClickListener.onItemClick(mData.get(getBindingAdapterPosition()));
         }
 
     }
 
-    public void setOnItemClickListener(ClickListener clickListener) {
-        LocationsAdapter.mClickListener = clickListener;
+    public interface OnItemClickListener {
+        void onItemClick(LocationItems locationItem);
     }
-
-    public interface ClickListener {
-        void onItemClick(int position, View v);
-    }
-
 
 }
