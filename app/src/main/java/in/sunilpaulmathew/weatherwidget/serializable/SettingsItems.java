@@ -1,4 +1,4 @@
-package in.sunilpaulmathew.weatherwidget.utils;
+package in.sunilpaulmathew.weatherwidget.serializable;
 
 import android.graphics.drawable.Drawable;
 

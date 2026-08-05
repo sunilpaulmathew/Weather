@@ -21,7 +21,7 @@ import in.sunilpaulmathew.weatherwidget.adapters.WeatherAdapter;
 import in.sunilpaulmathew.weatherwidget.interfaces.AcquireWeatherData;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
-import in.sunilpaulmathew.weatherwidget.utils.WeatherItems;
+import in.sunilpaulmathew.weatherwidget.serializable.WeatherItems;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 27, 2023

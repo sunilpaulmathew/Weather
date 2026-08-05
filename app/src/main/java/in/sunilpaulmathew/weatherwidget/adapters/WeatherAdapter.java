@@ -2,39 +2,34 @@ package in.sunilpaulmathew.weatherwidget.adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
 
-import in.sunilpaulmathew.weatherwidget.BuildConfig;
 import in.sunilpaulmathew.weatherwidget.R;
 import in.sunilpaulmathew.weatherwidget.activities.InitializeActivity;
 import in.sunilpaulmathew.weatherwidget.activities.SettingsActivity;
-import in.sunilpaulmathew.weatherwidget.utils.ForecastItems;
+import in.sunilpaulmathew.weatherwidget.dialogs.AboutDialog;
+import in.sunilpaulmathew.weatherwidget.dialogs.DailyForecastDialog;
+import in.sunilpaulmathew.weatherwidget.dialogs.HourlyForecastDialog;
+import in.sunilpaulmathew.weatherwidget.dialogs.MenuDialog;
+import in.sunilpaulmathew.weatherwidget.serializable.MenuItems;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
-import in.sunilpaulmathew.weatherwidget.utils.WeatherItems;
+import in.sunilpaulmathew.weatherwidget.serializable.WeatherItems;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2023
@@ -90,151 +85,44 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
             holder.mRecyclerViewDaily.setLayoutManager(new LinearLayoutManager(holder.mRecyclerViewHourly.getContext()));
             holder.mRecyclerViewDaily.addItemDecoration(new DividerItemDecoration(holder.mRecyclerViewDaily.getContext(), DividerItemDecoration.VERTICAL));
 
-            holder.mRecyclerViewDaily.setAdapter(new DailyForecastAdapter(this.mData.get(position).getDailyForecastItems(), (dailyPosition, view) -> {
-                LayoutInflater mLayoutInflator = LayoutInflater.from(view.getContext());
-                View detailsLayout = mLayoutInflator.inflate(R.layout.layout_weather_details, null);
-                AppCompatImageButton mStatusIcon = detailsLayout.findViewById(R.id.weather_button);
-                MaterialTextView mLocation = detailsLayout.findViewById(R.id.location);
-                MaterialTextView mDay = detailsLayout.findViewById(R.id.time_zone);
-                MaterialTextView mPrecipitation = detailsLayout.findViewById(R.id.precipitation);
-                MaterialTextView mAirPressure = detailsLayout.findViewById(R.id.air_pressure);
-                MaterialTextView mSunrise = detailsLayout.findViewById(R.id.sunrise);
-                MaterialTextView mSunset = detailsLayout.findViewById(R.id.sunset);
-                MaterialTextView mTemperature = detailsLayout.findViewById(R.id.temperature_status);
-                MaterialTextView mTempUnit = detailsLayout.findViewById(R.id.temperature_unit);
-                MaterialTextView mTempApparent = detailsLayout.findViewById(R.id.temperature_apparent);
-                MaterialTextView mWeatherStatus = detailsLayout.findViewById(R.id.weather_status);
-                MaterialTextView mWindSpeed = detailsLayout.findViewById(R.id.wind_speed);
-                MaterialTextView mHumidity = detailsLayout.findViewById(R.id.humidity);
-                MaterialTextView mVisibility = detailsLayout.findViewById(R.id.visibility);
-                mStatusIcon.setImageDrawable(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getWeatherIcon(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getDayOrNight(), view.getContext()));
-                mDay.setText(view.getContext().getString(R.string.weather_expected_title, Weather.getFormattedDay(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
-                        + dailyPosition) + " (" + (dailyPosition == 0 ? view.getContext().getString(R.string.today) : this.mData.get(position).getDailyForecastItems().get(dailyPosition).getDate()) + ")"));
-                mDay.setGravity(Gravity.CENTER);
-                if (Weather.getLocation(view.getContext()).contains(",")) {
-                    mLocation.setText(Weather.getLocation(view.getContext()).split(",")[0]);
-                } else {
-                    mLocation.setText(Weather.getLocation(view.getContext()));
-                }
-                mLocation.setTextColor(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getAccentColor(true, view.getContext()));
-                mSunrise.setText(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getSunriseTime());
-                mSunrise.setTextColor(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getAccentColor(true, view.getContext()));
-                mSunset.setText(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getSunsetTime());
-                mSunset.setTextColor(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getAccentColor(true, view.getContext()));
-                mTemperature.setText(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getDailyTemp());
-                mTemperature.setTextColor(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getAccentColor(true, view.getContext()));
-                mTemperature.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mTempUnit.setText(Weather.getTemperatureUnit(view.getContext()));
-                mTempUnit.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-                mWeatherStatus.setText(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getWeatherStatus(view.getContext()));
-                mPrecipitation.setText(this.mData.get(position).getDailyForecastItems().get(dailyPosition).getUVIndex(view.getContext()));
-                mAirPressure.setTypeface(Typeface.DEFAULT_BOLD);
-                getUVIndexText(this.mData.get(position).getDailyForecastItems().get(dailyPosition), mAirPressure, view.getContext());
-
-                mTempApparent.setVisibility(View.GONE);
-                mWindSpeed.setVisibility(View.GONE);
-                mHumidity.setVisibility(View.GONE);
-                mVisibility.setVisibility(View.GONE);
-
-                new MaterialAlertDialogBuilder(view.getContext())
-                        .setView(detailsLayout)
-                        .setPositiveButton(R.string.cancel, (dialogInterface, i) -> {
-                        }).show();
-            }));
+            holder.mRecyclerViewDaily.setAdapter(new DailyForecastAdapter(this.mData.get(position).getDailyForecastItems(), (dailyPosition, view) ->
+                    new DailyForecastDialog(this.mData.get(position).getDailyForecastItems().get(dailyPosition), dailyPosition, holder.mRecyclerViewDaily.getContext())));
 
             holder.mRecyclerViewHourly.setLayoutManager(new LinearLayoutManager(holder.mRecyclerViewHourly.getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-            holder.mRecyclerViewHourly.setAdapter(new HourlyForecastAdapter(this.mData.get(position).getHourlyForecastItems(), (hourlyPosition, view) -> {
-                LayoutInflater mLayoutInflator = LayoutInflater.from(view.getContext());
-                View detailsLayout = mLayoutInflator.inflate(R.layout.layout_weather_details, null);
-                AppCompatImageButton mSunriseIcon = detailsLayout.findViewById(R.id.sunrise_button);
-                AppCompatImageButton mSunsetIcon = detailsLayout.findViewById(R.id.sunset_button);
-                AppCompatImageButton mStatusIcon = detailsLayout.findViewById(R.id.weather_button);
-                MaterialTextView mLocation = detailsLayout.findViewById(R.id.location);
-                MaterialTextView mDay = detailsLayout.findViewById(R.id.time_zone);
-                MaterialTextView mPrecipitation = detailsLayout.findViewById(R.id.precipitation);
-                MaterialTextView mAirPressure = detailsLayout.findViewById(R.id.air_pressure);
-                MaterialTextView mSunrise = detailsLayout.findViewById(R.id.sunrise);
-                MaterialTextView mSunset = detailsLayout.findViewById(R.id.sunset);
-                MaterialTextView mTemperature = detailsLayout.findViewById(R.id.temperature_status);
-                MaterialTextView mTempUnit = detailsLayout.findViewById(R.id.temperature_unit);
-                MaterialTextView mTempApparent = detailsLayout.findViewById(R.id.temperature_apparent);
-                MaterialTextView mWeatherStatus = detailsLayout.findViewById(R.id.weather_status);
-                MaterialTextView mWindSpeed = detailsLayout.findViewById(R.id.wind_speed);
-                MaterialTextView mHumidity = detailsLayout.findViewById(R.id.humidity);
-                MaterialTextView mVisibility = detailsLayout.findViewById(R.id.visibility);
-
-                mStatusIcon.setImageDrawable(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getWeatherIcon(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getDayOrNight(), view.getContext()));
-                mDay.setText(view.getContext().getString(R.string.weather_expected_title, this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getTime()));
-                mDay.setGravity(Gravity.CENTER);
-                if (Weather.getLocation(view.getContext()).contains(",")) {
-                    mLocation.setText(Weather.getLocation(view.getContext()).split(",")[0]);
-                } else {
-                    mLocation.setText(Weather.getLocation(view.getContext()));
-                }
-                mLocation.setTextColor(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getAccentColor(true, view.getContext()));
-                mTemperature.setText(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getHourlyTemp());
-                mTemperature.setTextColor(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getAccentColor(true, view.getContext()));
-                mTemperature.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mTempUnit.setText(Weather.getTemperatureUnit(view.getContext()));
-                mTempUnit.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-                mTempApparent.setText(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getApparentTemperature());
-                mWeatherStatus.setText(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getWeatherStatus(view.getContext()));
-                mPrecipitation.setText(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getPrecipitation(view.getContext()));
-                mAirPressure.setText(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getAirPressure());
-                mHumidity.setText(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getHumidity());
-                mVisibility.setText(this.mData.get(position).getHourlyForecastItems().get(hourlyPosition).getVisibility());
-
-                mSunriseIcon.setVisibility(View.GONE);
-                mSunsetIcon.setVisibility(View.GONE);
-                mSunrise.setVisibility(View.GONE);
-                mSunset.setVisibility(View.GONE);
-                mWindSpeed.setVisibility(View.GONE);
-
-                new MaterialAlertDialogBuilder(view.getContext())
-                        .setView(detailsLayout)
-                        .setPositiveButton(R.string.cancel, (dialogInterface, i) -> {
-                        }).show();
-            }));
+            holder.mRecyclerViewHourly.setAdapter(new HourlyForecastAdapter(this.mData.get(position).getHourlyForecastItems(),forecastItem ->
+                    new HourlyForecastDialog(forecastItem, holder.mRecyclerViewHourly.getContext())));
 
             holder.mMenu.setOnClickListener(v -> {
-                PopupMenu popupMenu = new PopupMenu(v.getContext(), holder.mMenu);
-                Menu menu = popupMenu.getMenu();
-                menu.add(Menu.NONE, 0, Menu.NONE, v.getContext().getString(R.string.edit_location)).setIcon(R.drawable.ic_edit);
-                menu.add(Menu.NONE, 1, Menu.NONE, v.getContext().getString(R.string.preferences)).setIcon(R.drawable.ic_settings);
-                menu.add(Menu.NONE, 2, Menu.NONE, v.getContext().getString(R.string.about)).setIcon(R.drawable.ic_info);
-                popupMenu.setForceShowIcon(true);
-                popupMenu.setOnMenuItemClickListener(item -> {
-                    switch (item.getItemId()) {
-                        case 0:
-                            if (Utils.getBoolean("gpsAllowed", false, v.getContext()) && Utils.isGPSEnabled(v.getContext())) {
-                                Utils.toast(v.getContext().getString(R.string.edit_location_warning), v.getContext()).show();
-                            } else {
-                                Intent initialize = new Intent(v.getContext(), InitializeActivity.class);
-                                initialize.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                v.getContext().startActivity(initialize);
-                                mActivity.finish();
-                            }
-                            break;
-                        case 1:
-                            Intent settings = new Intent(v.getContext(), SettingsActivity.class);
-                            v.getContext().startActivity(settings);
-                            break;
-                        case 2:
-                            LayoutInflater mLayoutInflator = LayoutInflater.from(v.getContext());
-                            View aboutLayout = mLayoutInflator.inflate(R.layout.layout_about, null);
-                            MaterialTextView mAppTile = aboutLayout.findViewById(R.id.title);
-                            mAppTile.setText(v.getContext().getString(R.string.app_name) + " " + BuildConfig.VERSION_NAME);
+                List<MenuItems> itemsList = new ArrayList<>();
+                itemsList.add(new MenuItems(R.string.edit_location, R.drawable.ic_edit, 0));
+                itemsList.add(new MenuItems(R.string.preferences, R.drawable.ic_settings, 1));
+                itemsList.add(new MenuItems(R.string.about, R.drawable.ic_info, 2));
 
-                            new MaterialAlertDialogBuilder(v.getContext())
-                                    .setView(aboutLayout)
-                                    .setPositiveButton(R.string.cancel, (dialogInterface, i) -> {
-                                    }).show();
-                            break;
+                new MenuDialog(itemsList, v.getContext()) {
+                    @Override
+                    public void onCommandSelected(int position) {
+                        switch (position) {
+                            case 0:
+                                if (Utils.getBoolean("gpsAllowed", false, v.getContext()) && Utils.isGPSEnabled(v.getContext())) {
+                                    Utils.toast(v.getContext().getString(R.string.edit_location_warning), v.getContext()).show();
+                                } else {
+                                    Intent initialize = new Intent(v.getContext(), InitializeActivity.class);
+                                    initialize.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    v.getContext().startActivity(initialize);
+                                    mActivity.finish();
+                                }
+                                break;
+                            case 1:
+                                Intent settings = new Intent(v.getContext(), SettingsActivity.class);
+                                v.getContext().startActivity(settings);
+                                break;
+                            case 2:
+                                new AboutDialog(v.getContext());
+                                break;
+                        }
                     }
-                    return false;
-                });
-                popupMenu.show();
+                };
             });
         } else {
             holder.mLocation.setText(holder.mLocation.getContext().getString(R.string.weather_status_failed));
@@ -294,28 +182,6 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
             this.mRecyclerViewDaily = view.findViewById(R.id.recycler_view_daily);
             this.mRecyclerViewHourly = view.findViewById(R.id.recycler_view_hourly);
         }
-    }
-
-    @SuppressLint("SetTextI18n")
-    public void getUVIndexText(ForecastItems forecastItems, MaterialTextView alertText, Context context) {
-        int value;
-        String mUVIndex = forecastItems.getUVIndex(context).replace("UV Index: ", "");
-        if (mUVIndex.contains(".")) {
-            value = Integer.parseInt(mUVIndex.split("\\.")[0]);
-        } else {
-            value = Integer.parseInt(mUVIndex);
-        }
-        if (value >= 8) {
-            alertText.setText("(" + context.getString(R.string.uv_index_alert_high) + ")");
-            alertText.setTextColor(Color.RED);
-        } else if (value >= 3) {
-            alertText.setText("(" + context.getString(R.string.uv_index_alert_medium) + ")");
-            alertText.setTextColor(Color.YELLOW);
-        } else {
-            alertText.setText("(" + context.getString(R.string.uv_index_alert_safe) + ")");
-            alertText.setTextColor(Color.GREEN);
-        }
-        alertText.setGravity(Gravity.CENTER);
     }
 
 }

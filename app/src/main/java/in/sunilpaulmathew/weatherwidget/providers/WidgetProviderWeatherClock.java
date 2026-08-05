@@ -15,7 +15,7 @@ import in.sunilpaulmathew.weatherwidget.activities.MainActivity;
 import in.sunilpaulmathew.weatherwidget.interfaces.AcquireWeatherData;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
-import in.sunilpaulmathew.weatherwidget.utils.WeatherItems;
+import in.sunilpaulmathew.weatherwidget.serializable.WeatherItems;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 25, 2023

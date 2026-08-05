@@ -17,7 +17,7 @@ import java.util.List;
 import in.sunilpaulmathew.weatherwidget.R;
 import in.sunilpaulmathew.weatherwidget.providers.WidgetProviderWeatherClock;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
-import in.sunilpaulmathew.weatherwidget.utils.WeatherItems;
+import in.sunilpaulmathew.weatherwidget.serializable.WeatherItems;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 25, 2023

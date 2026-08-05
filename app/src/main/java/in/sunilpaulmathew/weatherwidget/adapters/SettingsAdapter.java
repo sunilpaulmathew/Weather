@@ -17,7 +17,7 @@ import com.google.android.material.textview.MaterialTextView;
 import java.util.List;
 
 import in.sunilpaulmathew.weatherwidget.R;
-import in.sunilpaulmathew.weatherwidget.utils.SettingsItems;
+import in.sunilpaulmathew.weatherwidget.serializable.SettingsItems;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 
 /*

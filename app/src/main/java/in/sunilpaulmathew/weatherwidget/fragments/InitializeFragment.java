@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -42,7 +42,7 @@ import java.util.concurrent.Executors;
 import in.sunilpaulmathew.weatherwidget.R;
 import in.sunilpaulmathew.weatherwidget.adapters.LocationsAdapter;
 import in.sunilpaulmathew.weatherwidget.interfaces.LocationListener;
-import in.sunilpaulmathew.weatherwidget.utils.LocationItems;
+import in.sunilpaulmathew.weatherwidget.serializable.LocationItems;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
 
@@ -62,7 +62,7 @@ public class InitializeFragment extends Fragment {
         mLatitude = mRootView.findViewById(R.id.latitude);
         mLocation = mRootView.findViewById(R.id.location);
         mLongitude = mRootView.findViewById(R.id.longitude);
-        MaterialCardView mApplyCard = mRootView.findViewById(R.id.apply_card);
+        MaterialButton mApplyCard = mRootView.findViewById(R.id.apply_button);
         RecyclerView mRecyclerView = mRootView.findViewById(R.id.recycler_view);
 
         if (Utils.isAmoledBlackEnabled(requireActivity())) {

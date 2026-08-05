@@ -1,16 +1,24 @@
 <androidx.core.widget.NestedScrollView
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_gravity="center"
-    android:gravity="center" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center" >
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:gravity="center" >
+        android:gravity="center">
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:background="?android:attr/colorControlNormal"
+            android:layout_marginVertical="10dp"
+            android:alpha="0.2" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="128dp"
@@ -57,5 +65,28 @@
             android:text="Open-Meteo: Weather and location data (GPL v3)\nBas Milius: Weather icons (MIT License)"
             android:layout_gravity="center"
             android:textStyle="italic" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end|bottom"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"
+            android:textStyle="bold|italic"
+            app:icon="@drawable/ic_cancel"
+            android:text="@string/cancel"
+            android:gravity="center|end"
+            app:iconGravity="textStart"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:background="?android:attr/colorControlNormal"
+            android:layout_marginVertical="10dp"
+            android:alpha="0.2" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

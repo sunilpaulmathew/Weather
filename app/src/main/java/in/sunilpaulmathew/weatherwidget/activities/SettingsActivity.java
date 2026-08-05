@@ -21,7 +21,7 @@ import in.sunilpaulmathew.weatherwidget.BuildConfig;
 import in.sunilpaulmathew.weatherwidget.R;
 import in.sunilpaulmathew.weatherwidget.adapters.SettingsAdapter;
 import in.sunilpaulmathew.weatherwidget.interfaces.SingleChoiceDialog;
-import in.sunilpaulmathew.weatherwidget.utils.SettingsItems;
+import in.sunilpaulmathew.weatherwidget.serializable.SettingsItems;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
 

@@ -22,11 +22,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import in.sunilpaulmathew.weatherwidget.R;
-import in.sunilpaulmathew.weatherwidget.utils.ForecastItems;
+import in.sunilpaulmathew.weatherwidget.serializable.ForecastItems;
 import in.sunilpaulmathew.weatherwidget.utils.Utils;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
 import in.sunilpaulmathew.weatherwidget.utils.WeatherAlerts;
-import in.sunilpaulmathew.weatherwidget.utils.WeatherItems;
+import in.sunilpaulmathew.weatherwidget.serializable.WeatherItems;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2023

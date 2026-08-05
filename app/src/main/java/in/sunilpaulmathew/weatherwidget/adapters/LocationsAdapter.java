@@ -12,7 +12,7 @@ import com.google.android.material.textview.MaterialTextView;
 import java.util.List;
 
 import in.sunilpaulmathew.weatherwidget.R;
-import in.sunilpaulmathew.weatherwidget.utils.LocationItems;
+import in.sunilpaulmathew.weatherwidget.serializable.LocationItems;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2023

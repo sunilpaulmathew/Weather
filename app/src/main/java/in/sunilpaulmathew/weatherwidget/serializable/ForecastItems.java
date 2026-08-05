@@ -1,4 +1,4 @@
-package in.sunilpaulmathew.weatherwidget.utils;
+package in.sunilpaulmathew.weatherwidget.serializable;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import java.io.Serializable;
 
 import in.sunilpaulmathew.weatherwidget.R;
+import in.sunilpaulmathew.weatherwidget.utils.Utils;
+import in.sunilpaulmathew.weatherwidget.utils.Weather;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2023

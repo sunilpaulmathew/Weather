@@ -15,7 +15,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import in.sunilpaulmathew.weatherwidget.R;
-import in.sunilpaulmathew.weatherwidget.utils.ForecastItems;
+import in.sunilpaulmathew.weatherwidget.serializable.ForecastItems;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
 
 /*

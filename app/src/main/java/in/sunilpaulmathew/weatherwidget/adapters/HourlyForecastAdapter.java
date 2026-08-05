@@ -13,7 +13,7 @@ import com.google.android.material.textview.MaterialTextView;
 import java.util.List;
 
 import in.sunilpaulmathew.weatherwidget.R;
-import in.sunilpaulmathew.weatherwidget.utils.ForecastItems;
+import in.sunilpaulmathew.weatherwidget.serializable.ForecastItems;
 import in.sunilpaulmathew.weatherwidget.utils.Weather;
 
 /*
@@ -66,12 +66,12 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
 
         @Override
         public void onClick(View view) {
-            mClickListener.onItemClick(getBindingAdapterPosition(), view);
+            mClickListener.onItemClick(mData.get(getBindingAdapterPosition()));
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position, View v);
+        void onItemClick(ForecastItems forecastItems);
     }
 
 }
