@@ -5,6 +5,11 @@ plugins {
 def keystoreFile = rootProject.file("app/sp.jks")
 
 android {
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
     if (keystoreFile.exists()) {
         signingConfigs {
             release {
