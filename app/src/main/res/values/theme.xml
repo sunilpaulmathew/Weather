@@ -8,7 +8,16 @@
     <style name="AppTheme.Amoled" parent="AppTheme">
         <item name="android:colorBackground">@color/color_black</item>
         <item name="android:windowBackground">@color/color_black</item>
-        <item name="colorPrimaryDark">@color/color_black</item>
         <item name="colorSurface">@color/color_black</item>
+        <item name="colorSurfaceDim">@color/color_black</item>
+        <item name="colorSurfaceBright">#121212</item>
+        <item name="colorSurfaceContainerLowest">@color/color_black</item>
+        <item name="colorSurfaceContainerLow">@color/color_black</item>
+        <item name="colorSurfaceContainer">#0A0A0A</item>
+        <item name="colorSurfaceContainerHigh">#121212</item>
+        <item name="colorSurfaceContainerHighest">#1A1A1A</item>
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="colorOutline">#333333</item>
+        <item name="colorOutlineVariant">#1F1F1F</item>
     </style>
 </resources>
