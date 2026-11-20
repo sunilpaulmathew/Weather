@@ -44,6 +44,7 @@ public class WeatherFragment extends Fragment {
 
             @Override
             public void successLister(List<WeatherItems> weatherItems) {
+                if (!isAdded() || isDetached() || getContext() == null) return;
                 mSplash.setVisibility(View.GONE);
                 mRecyclerView.setAdapter(new WeatherAdapter(weatherItems, requireActivity()));
             }
