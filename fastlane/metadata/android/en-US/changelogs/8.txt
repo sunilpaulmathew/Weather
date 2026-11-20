@@ -1,0 +1,4 @@
+• Fixed a critical bug that prevents app from loading weather data
+• Fixed AMOLED theme not applying properly
+• Updated Spanish and Russian translations
+• Updated build tools and dependencies
